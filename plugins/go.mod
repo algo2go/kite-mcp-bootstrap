@@ -48,7 +48,7 @@ require (
 	github.com/algo2go/kite-mcp-users v0.2.0
 	github.com/mark3labs/mcp-go v0.46.0
 	github.com/stretchr/testify v1.11.1
-	github.com/algo2go/kite-mcp-bootstrap v0.1.1
+	github.com/algo2go/kite-mcp-bootstrap v0.2.0
 )
 
 require (
