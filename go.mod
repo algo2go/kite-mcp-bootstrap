@@ -75,16 +75,6 @@ replace (
 	github.com/algo2go/kite-mcp-bootstrap/testutil => ./testutil
 )
 
-// Phase 2 canary (2026-05-16): kite-mcp-tools-common is extracted to
-// its own algo2go module bundling mcp/{common,plugin,middleware}. This
-// replace directive points the dependency at the sibling working tree
-// so bootstrap builds against the EXACT extracted source during the
-// cutover window. Phase B canary deletion drops this replace (after
-// this PR lands green), letting GOPROXY resolve v0.1.0 as the canonical
-// source — and at that point the in-tree mcp/{common,plugin,middleware}
-// directories are rm-ed.
-replace github.com/algo2go/kite-mcp-tools-common => ../kite-mcp-tools-common
-
 require (
 	cloud.google.com/go/compute/metadata v0.9.0 // indirect
 	github.com/algo2go/kite-mcp-isttz v0.1.0 // indirect

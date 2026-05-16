@@ -52,6 +52,8 @@ github.com/algo2go/kite-mcp-templates v0.1.0 h1:IakYl8o4F8dGJl7MSPCAqxPoKOXUvI4l
 github.com/algo2go/kite-mcp-templates v0.1.0/go.mod h1:UV6YXB2GLX+zoQZmDCFg5D6/YbhVDEIFPoTKg5eSMXY=
 github.com/algo2go/kite-mcp-ticker v0.1.0 h1:ei0+PEVfOjfZ82NjoG3CVJO4QSC1wO5g3UJsFiBtoPk=
 github.com/algo2go/kite-mcp-ticker v0.1.0/go.mod h1:N86ZMlr9JTY3TNOGvMmcOtfm/WcN3kEX1jIMfN+VkPw=
+github.com/algo2go/kite-mcp-tools-common v0.1.0 h1:+qPqjoV8jMOn3KcM4gbse56YrYpwgjKXIqb0a09eR24=
+github.com/algo2go/kite-mcp-tools-common v0.1.0/go.mod h1:mPFqKezO1Vu0NQNyKFL/Ccz3Rh5AGJJsRr2ZICIojfc=
 github.com/algo2go/kite-mcp-usecases v0.1.0 h1:nweFhIEIWEMjctHEF7ABX1ZsWEUuyFL+6QWILCZf+lI=
 github.com/algo2go/kite-mcp-usecases v0.1.0/go.mod h1:I8+tdjIHYKtYFNHyS8saJHBBGNJnoujBhXxWsUcgbV8=
 github.com/algo2go/kite-mcp-users v0.2.0 h1:MmSuEKhyM/POv9WIdSB/Vw4nbh4wq1FWD02SbMNqqJQ=
