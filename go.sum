@@ -24,6 +24,8 @@ github.com/algo2go/kite-mcp-instruments v0.1.0 h1:TtJOJOFHEwRAmX7YSdhQVatqK2xLaC
 github.com/algo2go/kite-mcp-instruments v0.1.0/go.mod h1:3BPb/ieWrz1WvNTUulp45jj050l9xrshiLRoFwQXQ7E=
 github.com/algo2go/kite-mcp-isttz v0.1.0 h1:9E3T/LVk0J9XCHp80keS9PPL4k+vl/9FVvMB3UviBlY=
 github.com/algo2go/kite-mcp-isttz v0.1.0/go.mod h1:Hc4IJoSF9Ib6U930IIz8nk2iT1FLt17tgpdREv8+MgM=
+github.com/algo2go/kite-mcp-kc v0.1.0 h1:XJ523SGm2B7Rjt8gVkyR/6/02C1U5lTFZRPP7+2ihWQ=
+github.com/algo2go/kite-mcp-kc v0.1.0/go.mod h1:S+Ia9UobxEqm6zk1jjNi1lX0iN3jmP0i7G7TJT0u1MQ=
 github.com/algo2go/kite-mcp-legaldocs v0.1.0 h1:9fw+JkpEW050KMFWj/JKCANZL9UTgY0KORoNfw3uGkc=
 github.com/algo2go/kite-mcp-legaldocs v0.1.0/go.mod h1:CJwnq9dgEnjLXL7V3x27VoztESE3ImZN54TCi9eSqxg=
 github.com/algo2go/kite-mcp-logger v0.1.0 h1:A+i9vnM43sZn5Y2wEz3TAks32YKCvyob1HXDyUUuTuk=
