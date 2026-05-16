@@ -1,0 +1,36 @@
+name: CI
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+
+# kite-mcp-bootstrap is a workspace-aware multi-module repo. Each
+# go.mod is built + tested independently to mirror the production
+# Dockerfile path (which fetches each module from GOPROXY rather than
+# relying on go.work).
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        module:
+          - .
+          - app/providers
+          - plugins
+          - testutil
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-go@v6
+        with:
+          go-version: '1.25.0'
+      - name: Build (${{ matrix.module }})
+        working-directory: ${{ matrix.module }}
+        run: go build -v ./...
+      - name: Vet (${{ matrix.module }})
+        working-directory: ${{ matrix.module }}
+        run: go vet ./...
+      - name: Test (${{ matrix.module }})
+        working-directory: ${{ matrix.module }}
+        run: go test -race -count=1 -short ./...
