@@ -288,7 +288,7 @@ type DeleteAlertTool struct{}
 
 func (*DeleteAlertTool) Tool() mcp.Tool {
 	return mcp.NewTool("delete_alert",
-		mcp.WithDescription("Delete a price alert by its ID."),
+		mcp.WithDescription("Delete a price alert. Pass alert_id (from list_alerts or set_alert response). Removes the alert from the active poll loop; any future price-cross will not trigger. Already-triggered alerts remain in history (queryable via get_alert_history). Idempotent on already-deleted: returns 'not found' error. To list current alerts use list_alerts; to create a new alert use set_alert."),
 		mcp.WithTitleAnnotation("Delete Alert"),
 		mcp.WithDestructiveHintAnnotation(true),
 		mcp.WithIdempotentHintAnnotation(true),

@@ -17,7 +17,7 @@ type MFOrdersTool struct{}
 
 func (*MFOrdersTool) Tool() mcp.Tool {
 	return mcp.NewTool("get_mf_orders",
-		mcp.WithDescription("Get all mutual fund orders. Supports pagination for large datasets."),
+		mcp.WithDescription("List all mutual fund orders for the authenticated user (BUY + SELL/redemption, lifetime). Returns one row per order with tradingsymbol, amount, quantity, status (OPEN/COMPLETE/CANCELLED/REJECTED), order_timestamp, transaction_type. Supports pagination via 'from' + 'limit'. For active SIPs (recurring) use get_mf_sips; for current holdings use get_mf_holdings."),
 		mcp.WithTitleAnnotation("Get MF Orders"),
 		mcp.WithReadOnlyHintAnnotation(true),
 		mcp.WithIdempotentHintAnnotation(true),
@@ -87,7 +87,7 @@ type MFHoldingsTool struct{}
 
 func (*MFHoldingsTool) Tool() mcp.Tool {
 	return mcp.NewTool("get_mf_holdings",
-		mcp.WithDescription("Get all mutual fund holdings. Supports pagination for large datasets."),
+		mcp.WithDescription("List the user's current mutual fund holdings (units owned, average price, last price, P&L). Returns one row per fund with tradingsymbol, folio, quantity (units), average_price, last_price, pnl. Supports pagination via 'from' + 'limit'. For order history use get_mf_orders; for active SIPs use get_mf_sips. P&L computed by Zerodha; check Kite app for tax-grade values."),
 		mcp.WithTitleAnnotation("Get MF Holdings"),
 		mcp.WithReadOnlyHintAnnotation(true),
 		mcp.WithIdempotentHintAnnotation(true),
@@ -204,7 +204,7 @@ type CancelMFOrderTool struct{}
 
 func (*CancelMFOrderTool) Tool() mcp.Tool {
 	return mcp.NewTool("cancel_mf_order",
-		mcp.WithDescription("Cancel a pending mutual fund order"),
+		mcp.WithDescription("Cancel a pending mutual fund order before it executes (NAV cut-off at 15:00 IST for liquid funds, ~14:00 IST for equity funds). Requires order_id from get_mf_orders. Once the order moves past status=OPEN (typically into status=COMPLETE after NAV allocation), it cannot be cancelled — only redeemed via place_mf_order with SELL. For SIP cancellation use cancel_mf_sip."),
 		mcp.WithTitleAnnotation("Cancel MF Order"),
 		mcp.WithDestructiveHintAnnotation(true),
 		mcp.WithIdempotentHintAnnotation(true),
@@ -245,7 +245,7 @@ type PlaceMFSIPTool struct{}
 
 func (*PlaceMFSIPTool) Tool() mcp.Tool {
 	return mcp.NewTool("place_mf_sip",
-		mcp.WithDescription("Start a new mutual fund SIP (Systematic Investment Plan)"),
+		mcp.WithDescription("Start a Systematic Investment Plan (SIP) on a mutual fund — auto-debits and invests a fixed rupee amount on a fixed day each month/quarter. Requires tradingsymbol (fund), amount (rupees), instalments (count or 0 for perpetual), frequency (monthly/weekly), instalment_day (1-28). Initial amount can differ via initial_amount. SIPs persist on Zerodha's servers until cancelled or instalment-count reached. To cancel use cancel_mf_sip; for a one-shot purchase use place_mf_order."),
 		mcp.WithTitleAnnotation("Place MF SIP"),
 		mcp.WithDestructiveHintAnnotation(true),
 		mcp.WithIdempotentHintAnnotation(false),
@@ -328,7 +328,7 @@ type CancelMFSIPTool struct{}
 
 func (*CancelMFSIPTool) Tool() mcp.Tool {
 	return mcp.NewTool("cancel_mf_sip",
-		mcp.WithDescription("Cancel an existing mutual fund SIP"),
+		mcp.WithDescription("Cancel an active mutual fund SIP. Requires sip_id from get_mf_sips. After cancellation no further auto-debits occur; existing holdings (units already purchased through this SIP) are unaffected and remain in your portfolio. To pause without cancelling, Zerodha does not currently support — use the dashboard or wait until next cycle. Use place_mf_sip to re-arm with the same or new parameters."),
 		mcp.WithTitleAnnotation("Cancel MF SIP"),
 		mcp.WithDestructiveHintAnnotation(true),
 		mcp.WithIdempotentHintAnnotation(true),

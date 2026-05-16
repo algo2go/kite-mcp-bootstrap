@@ -37,7 +37,7 @@ type MarginsTool struct{}
 
 func (*MarginsTool) Tool() mcp.Tool {
 	return mcp.NewTool("get_margins",
-		mcp.WithDescription("Get margins"),
+		mcp.WithDescription("Get available trading margin / fund balance for the user's account. Returns per-segment rows: 'equity' (NSE/BSE cash + delivery) and 'commodity' (MCX) — net, available, used, payin, opening_balance. Use to check pre-order capital sufficiency. For per-order margin requirement use get_order_margins; for multi-leg basket margin use get_basket_margins."),
 		mcp.WithTitleAnnotation("Get Margins"),
 		mcp.WithReadOnlyHintAnnotation(true),
 		mcp.WithIdempotentHintAnnotation(true),
@@ -56,7 +56,7 @@ type HoldingsTool struct{}
 
 func (*HoldingsTool) Tool() mcp.Tool {
 	return mcp.NewTool("get_holdings",
-		mcp.WithDescription("Get holdings for the current user. Supports pagination for large datasets."),
+		mcp.WithDescription("List equity holdings (CNC / delivery) the user owns: stocks bought and held T+1 settlement. Returns one row per symbol with tradingsymbol, exchange, isin, quantity, average_price, last_price, pnl, day_change, day_change_percentage. Pagination via 'from' + 'limit'. For intraday F&O / MIS positions use get_positions; for mutual funds use get_mf_holdings; for current orders use get_orders."),
 		mcp.WithTitleAnnotation("Get Holdings"),
 		mcp.WithReadOnlyHintAnnotation(true),
 		mcp.WithIdempotentHintAnnotation(true),
@@ -182,7 +182,7 @@ type OrdersTool struct{}
 
 func (*OrdersTool) Tool() mcp.Tool {
 	return mcp.NewTool("get_orders",
-		mcp.WithDescription("Get all orders. Supports pagination for large datasets."),
+		mcp.WithDescription("List ALL orders placed today across NSE/BSE/NFO/BFO/MCX/CDS — every state (OPEN, COMPLETE, CANCELLED, REJECTED, TRIGGER PENDING for SL). Returns order_id, tradingsymbol, transaction_type, quantity, filled_quantity, price, status, order_timestamp, status_message. Pagination via 'from' + 'limit'. For executed trades only use get_trades; for one order's history use get_order_history; for GTTs use get_gtts; for MF orders use get_mf_orders."),
 		mcp.WithTitleAnnotation("Get Orders"),
 		mcp.WithReadOnlyHintAnnotation(true),
 		mcp.WithIdempotentHintAnnotation(true),
@@ -217,7 +217,7 @@ type GTTOrdersTool struct{}
 
 func (*GTTOrdersTool) Tool() mcp.Tool {
 	return mcp.NewTool("get_gtts",
-		mcp.WithDescription("Get all active GTT orders. Supports pagination for large datasets."),
+		mcp.WithDescription("List active Good-Till-Triggered (GTT) orders — orders that fire when their trigger price is reached. Returns one row per GTT with trigger_id, status (active/triggered/expired/cancelled/rejected/deleted), tradingsymbol, trigger_type (single/two-leg), trigger_values, orders payload. Use trigger_id with modify_gtt_order / delete_gtt_order. GTTs auto-expire after 1 year. Pagination via 'from' + 'limit'."),
 		mcp.WithTitleAnnotation("Get GTT Orders"),
 		mcp.WithReadOnlyHintAnnotation(true),
 		mcp.WithIdempotentHintAnnotation(true),

@@ -75,7 +75,7 @@ type StopTickerTool struct{}
 
 func (*StopTickerTool) Tool() mcp.Tool {
 	return mcp.NewTool("stop_ticker",
-		mcp.WithDescription("Stop the WebSocket stream for live market data."),
+		mcp.WithDescription("Stop the user's live WebSocket tick stream and release the connection. Active subscriptions are cleared. To resume later, call start_ticker (which re-establishes the session) followed by subscribe_instruments. Idempotent — calling on an already-stopped ticker returns success. Note: Kite enforces ONE active ticker per user; if you forget to stop, the next start_ticker reuses the slot."),
 		mcp.WithTitleAnnotation("Stop Ticker"),
 		mcp.WithDestructiveHintAnnotation(true),
 		mcp.WithIdempotentHintAnnotation(true),
@@ -114,7 +114,7 @@ type TickerStatusTool struct{}
 
 func (*TickerStatusTool) Tool() mcp.Tool {
 	return mcp.NewTool("ticker_status",
-		mcp.WithDescription("Show the current WebSocket ticker connection status and subscribed instruments."),
+		mcp.WithDescription("Show the user's live ticker state — connection status (connected / disconnected / reconnecting), latest tick timestamp, count of currently subscribed instruments, mode per subscription (LTP / quote / full). Useful for debugging missing ticks; for the actual price data use the subscribed callbacks or get_quotes / get_ltp pull APIs. Read-only; safe to poll."),
 		mcp.WithTitleAnnotation("Ticker Status"),
 		mcp.WithReadOnlyHintAnnotation(true),
 		mcp.WithIdempotentHintAnnotation(true),
@@ -226,7 +226,7 @@ type UnsubscribeInstrumentsTool struct{}
 
 func (*UnsubscribeInstrumentsTool) Tool() mcp.Tool {
 	return mcp.NewTool("unsubscribe_instruments",
-		mcp.WithDescription("Unsubscribe from instruments to stop receiving live tick data."),
+		mcp.WithDescription("Stop receiving live ticks for specific instruments while keeping the ticker connection alive. Pass instruments as exchange:tradingsymbol (e.g., 'NSE:INFY'). The ticker stays running for other subscriptions; to stop everything use stop_ticker. Idempotent — unsubscribing a non-subscribed symbol returns success. Use ticker_status to inspect the current subscription list."),
 		mcp.WithTitleAnnotation("Unsubscribe Instruments"),
 		mcp.WithDestructiveHintAnnotation(false),
 		mcp.WithIdempotentHintAnnotation(true),

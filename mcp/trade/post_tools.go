@@ -30,7 +30,7 @@ type PlaceOrderTool struct{}
 
 func (*PlaceOrderTool) Tool() mcp.Tool {
 	return mcp.NewTool("place_order",
-		mcp.WithDescription("Place an order"),
+		mcp.WithDescription("Place a new equity, F&O, currency, or commodity order on NSE/BSE/NFO/BFO/MCX/CDS. Requires exchange, tradingsymbol, transaction_type (BUY/SELL), quantity, product (CNC/MIS/NRML), order_type (MARKET/LIMIT/SL/SL-M). LIMIT requires price; SL/SL-M requires trigger_price. Supports iceberg (iceberg_legs + iceberg_quantity), AMO (variety=amo), and idempotency via client_order_id. Routes through riskguard (kill switch, order-value cap, daily count, rate limit, duplicate detection). For Good-Till-Triggered alternatives use place_gtt_order; for SIPs use place_mf_sip. Subject to SEBI Apr 2026 IP-whitelist mandate; hosted instance gates via ENABLE_TRADING."),
 		mcp.WithTitleAnnotation("Place Order"),
 		mcp.WithDestructiveHintAnnotation(true),
 		mcp.WithIdempotentHintAnnotation(false),
@@ -229,7 +229,7 @@ type ModifyOrderTool struct{}
 
 func (*ModifyOrderTool) Tool() mcp.Tool {
 	return mcp.NewTool("modify_order",
-		mcp.WithDescription("Modify an existing order"),
+		mcp.WithDescription("Modify an open order on NSE/BSE that has not yet executed. Requires variety and order_id. Modifiable fields: price (for LIMIT), quantity, order_type (e.g., LIMIT to MARKET), trigger_price (for SL/SL-M), disclosed_quantity, validity. Trailing-stop modifications use the dedicated trailing_stop tools. Cannot modify cancelled or fully-executed orders — surface returns a Kite-side error in that case. Subject to SEBI Apr 2026 IP-whitelist mandate; hosted instance gates via ENABLE_TRADING."),
 		mcp.WithTitleAnnotation("Modify Order"),
 		mcp.WithDestructiveHintAnnotation(true),
 		mcp.WithIdempotentHintAnnotation(false),
@@ -348,7 +348,7 @@ type CancelOrderTool struct{}
 
 func (*CancelOrderTool) Tool() mcp.Tool {
 	return mcp.NewTool("cancel_order",
-		mcp.WithDescription("Cancel an existing order"),
+		mcp.WithDescription("Cancel an open (un-executed) order on NSE/BSE. Requires variety and order_id (and parent_order_id for cover/bracket child legs). Once cancelled the order is removed from the orderbook and cannot be reinstated — place a new order via place_order if needed. Fully-executed orders cannot be cancelled (use close_position or place_order in the opposite direction to flatten). For GTT cancellation use delete_gtt_order; for MF use cancel_mf_order. Subject to SEBI Apr 2026 IP-whitelist mandate; hosted instance gates via ENABLE_TRADING."),
 		mcp.WithTitleAnnotation("Cancel Order"),
 		mcp.WithDestructiveHintAnnotation(true),
 		mcp.WithIdempotentHintAnnotation(true),

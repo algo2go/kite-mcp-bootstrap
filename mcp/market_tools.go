@@ -43,7 +43,7 @@ type QuotesTool struct{}
 
 func (*QuotesTool) Tool() mcp.Tool {
 	return mcp.NewTool("get_quotes",
-		mcp.WithDescription("Get market data quotes for a list of instruments"),
+		mcp.WithDescription("Get full market quote snapshot for up to 500 instruments — last_price, OHLC, volume, depth (top 5 buy/sell), oi (open interest for F&O), average_price, last_quantity. Use exchange:tradingsymbol format (e.g., NSE:INFY, NFO:NIFTY25FEB23000CE). For just price use get_ltp (cheaper, faster); for candles use get_historical_data; for OHLC only use get_ohlc. Cached at exchange-side; may lag by ~1s."),
 		mcp.WithTitleAnnotation("Get Quotes"),
 		mcp.WithReadOnlyHintAnnotation(true),
 		mcp.WithIdempotentHintAnnotation(true),
@@ -93,7 +93,7 @@ type InstrumentsSearchTool struct{}
 
 func (*InstrumentsSearchTool) Tool() mcp.Tool {
 	return mcp.NewTool("search_instruments", // The filter_on parameter already supports multiple search modes (id, name, isin, tradingsymbol, underlying). Additional instruments.Manager queries can be exposed via new filter_on enum values if needed.
-		mcp.WithDescription("Search instruments. Supports pagination for large result sets."),
+		mcp.WithDescription("Search Zerodha's instruments master (NSE/BSE equity, NFO/BFO derivatives, MCX commodities, CDS currency, MF). Filter modes via filter_on: 'tradingsymbol' (e.g., 'INFY'), 'name' (e.g., 'Infosys'), 'isin', 'id' (instrument_token), 'underlying' (NFO/BFO chains, format exch:underlying e.g., 'NFO:NIFTY'). Returns tradingsymbol, instrument_token, exchange, segment, expiry, strike, lot_size. Pagination via 'from' + 'limit' (default 100). Refreshed daily ~07:30 IST."),
 		mcp.WithTitleAnnotation("Search Instruments"),
 		mcp.WithReadOnlyHintAnnotation(true),
 		mcp.WithIdempotentHintAnnotation(true),
@@ -208,7 +208,7 @@ type HistoricalDataTool struct{}
 
 func (*HistoricalDataTool) Tool() mcp.Tool {
 	return mcp.NewTool("get_historical_data",
-		mcp.WithDescription("Get historical price data for an instrument"),
+		mcp.WithDescription("Get historical OHLC candles for one instrument over a date range. Requires instrument_token (from search_instruments), from_date + to_date (YYYY-MM-DD HH:MM:SS), interval (minute, 3minute, 5minute, 10minute, 15minute, 30minute, 60minute, day). Optional continuous=true (for F&O continuous-contracts), oi=true (open-interest series for F&O). Subject to Zerodha lookback limits — minute candles ~60 days, day candles unlimited. Use for backtests + indicators; for live tick use ticker subscription."),
 		mcp.WithTitleAnnotation("Get Historical Data"),
 		mcp.WithReadOnlyHintAnnotation(true),
 		mcp.WithIdempotentHintAnnotation(true),
@@ -298,7 +298,7 @@ type LTPTool struct{}
 
 func (*LTPTool) Tool() mcp.Tool {
 	return mcp.NewTool("get_ltp",
-		mcp.WithDescription("Get latest trading prices for a list of instruments"),
+		mcp.WithDescription("Get the last-traded price (LTP) only for up to 500 instruments — minimum payload, fastest API. Use exchange:tradingsymbol format (e.g., NSE:INFY). For full quote (OHLC + depth + volume) use get_quotes; for OHLC only use get_ohlc; for candles use get_historical_data. May lag by ~1s vs live ticker; for real-time use start_ticker + subscribe_instruments."),
 		mcp.WithTitleAnnotation("Get LTP"),
 		mcp.WithReadOnlyHintAnnotation(true),
 		mcp.WithIdempotentHintAnnotation(true),
@@ -354,7 +354,7 @@ type OHLCTool struct{}
 
 func (*OHLCTool) Tool() mcp.Tool {
 	return mcp.NewTool("get_ohlc",
-		mcp.WithDescription("Get OHLC (Open, High, Low, Close) data for a list of instruments"),
+		mcp.WithDescription("Get today's OHLC (Open, High, Low, Close) plus last_price for up to 500 instruments. Use exchange:tradingsymbol format (e.g., NSE:INFY). Cheaper than get_quotes (no depth or volume) but richer than get_ltp (adds the OHL). For historical OHLC candles across a date range use get_historical_data."),
 		mcp.WithTitleAnnotation("Get OHLC"),
 		mcp.WithReadOnlyHintAnnotation(true),
 		mcp.WithIdempotentHintAnnotation(true),

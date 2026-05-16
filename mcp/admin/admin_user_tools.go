@@ -24,7 +24,7 @@ type AdminListUsersTool struct{}
 
 func (*AdminListUsersTool) Tool() mcp.Tool {
 	return mcp.NewTool("admin_list_users",
-		mcp.WithDescription("List all registered users with email, role, status, and last login. Admin-only."),
+		mcp.WithDescription("List every registered user on the instance — email, role (admin/user), status (active/suspended/frozen), tier (free/solo-pro/pro/premium), last_login_at, created_at, riskguard_state. Admin-only (rejected without admin role). Read-only; supports pagination via 'from' + 'limit'. For deep-dive into one user use admin_get_user; for baseline order-stats use admin_get_user_baseline; for anomaly-flagged users use admin_list_anomaly_flags."),
 		mcp.WithTitleAnnotation("Admin: List Users"),
 		mcp.WithReadOnlyHintAnnotation(true),
 		mcp.WithIdempotentHintAnnotation(true),

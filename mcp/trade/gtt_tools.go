@@ -23,7 +23,7 @@ type PlaceGTTOrderTool struct{}
 
 func (*PlaceGTTOrderTool) Tool() mcp.Tool {
 	return mcp.NewTool("place_gtt_order",
-		mcp.WithDescription("Place a GTT (Good Till Triggered) order"),
+		mcp.WithDescription("Place a Good-Till-Triggered (GTT) order that fires when the trigger price is reached, even if you're offline. Two trigger types: 'single' (one trigger_value) for take-profit or stop-loss; 'two-leg' (upper_trigger_value + lower_trigger_value) for OCO (one-cancels-other) bracket orders. GTTs persist on Zerodha's servers until triggered or 1-year expiry. Subject to SEBI Apr 2026 IP-whitelist mandate; hosted instance gates via ENABLE_TRADING. For immediate execution use place_order instead."),
 		mcp.WithTitleAnnotation("Place GTT Order"),
 		mcp.WithDestructiveHintAnnotation(true),
 		mcp.WithIdempotentHintAnnotation(false),
@@ -167,7 +167,7 @@ type DeleteGTTOrderTool struct{}
 
 func (*DeleteGTTOrderTool) Tool() mcp.Tool {
 	return mcp.NewTool("delete_gtt_order",
-		mcp.WithDescription("Delete an existing GTT (Good Till Triggered) order"),
+		mcp.WithDescription("Delete (cancel) an active GTT (Good-Till-Triggered) order before it fires. Requires trigger_id from get_gtts. Once deleted the GTT is removed permanently — to re-arm, call place_gtt_order with new parameters. Already-triggered GTTs cannot be deleted (they've already become regular orders; use cancel_order on the spawned order). For modification without deletion use modify_gtt_order."),
 		mcp.WithTitleAnnotation("Delete GTT Order"),
 		mcp.WithDestructiveHintAnnotation(true),
 		mcp.WithIdempotentHintAnnotation(true),
@@ -218,7 +218,7 @@ type ModifyGTTOrderTool struct{}
 
 func (*ModifyGTTOrderTool) Tool() mcp.Tool {
 	return mcp.NewTool("modify_gtt_order",
-		mcp.WithDescription("Modify an existing GTT (Good Till Triggered) order"),
+		mcp.WithDescription("Modify an active GTT (Good-Till-Triggered) order without deleting and re-creating. Requires trigger_id from get_gtts. Modifiable fields: trigger_value(s), quantity, order_type, price. Two-leg GTTs accept upper_trigger_value + lower_trigger_value (both). Already-triggered GTTs cannot be modified. To cancel use delete_gtt_order; to inspect use get_gtts."),
 		mcp.WithTitleAnnotation("Modify GTT Order"),
 		mcp.WithDestructiveHintAnnotation(true),
 		mcp.WithIdempotentHintAnnotation(false),

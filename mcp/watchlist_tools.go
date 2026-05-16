@@ -75,7 +75,7 @@ type DeleteWatchlistTool struct{}
 
 func (*DeleteWatchlistTool) Tool() mcp.Tool {
 	return mcp.NewTool("delete_watchlist",
-		mcp.WithDescription("Delete a watchlist and all its items."),
+		mcp.WithDescription("Delete a user's named watchlist plus every instrument tracked in it. Pass watchlist by id or name. Items inside (target prices, notes) are lost permanently — no undo. Returns the count of items removed for audit. To remove just specific instruments use remove_from_watchlist; to list watchlists use list_watchlists. Idempotent on already-deleted: returns 'not found' error."),
 		mcp.WithTitleAnnotation("Delete Watchlist"),
 		mcp.WithDestructiveHintAnnotation(true),
 		mcp.WithIdempotentHintAnnotation(true),
@@ -244,7 +244,7 @@ type RemoveFromWatchlistTool struct{}
 
 func (*RemoveFromWatchlistTool) Tool() mcp.Tool {
 	return mcp.NewTool("remove_from_watchlist",
-		mcp.WithDescription("Remove instruments from a watchlist by item ID or exchange:symbol."),
+		mcp.WithDescription("Remove specific instruments from a watchlist (keep the watchlist itself). Pass watchlist by id/name + list of items, each either as item_id (from get_watchlist) or as exchange:tradingsymbol (e.g., 'NSE:INFY'). To clear the entire watchlist + delete the container use delete_watchlist. To list current contents use get_watchlist."),
 		mcp.WithTitleAnnotation("Remove from Watchlist"),
 		mcp.WithDestructiveHintAnnotation(true),
 		mcp.WithIdempotentHintAnnotation(true),
@@ -497,7 +497,7 @@ type ListWatchlistsTool struct{}
 
 func (*ListWatchlistsTool) Tool() mcp.Tool {
 	return mcp.NewTool("list_watchlists",
-		mcp.WithDescription("List all watchlists for the current user with item counts."),
+		mcp.WithDescription("List all watchlists the user owns — name, id, item_count, last_updated. Up to 10 watchlists per user (Kite limit). Read-only summary; to see the instruments inside a specific watchlist use get_watchlist; to create a new one use create_watchlist."),
 		mcp.WithTitleAnnotation("List Watchlists"),
 		mcp.WithReadOnlyHintAnnotation(true),
 		mcp.WithIdempotentHintAnnotation(true),
