@@ -28,6 +28,8 @@ github.com/algo2go/kite-mcp-legaldocs v0.1.0 h1:9fw+JkpEW050KMFWj/JKCANZL9UTgY0K
 github.com/algo2go/kite-mcp-legaldocs v0.1.0/go.mod h1:CJwnq9dgEnjLXL7V3x27VoztESE3ImZN54TCi9eSqxg=
 github.com/algo2go/kite-mcp-logger v0.1.0 h1:A+i9vnM43sZn5Y2wEz3TAks32YKCvyob1HXDyUUuTuk=
 github.com/algo2go/kite-mcp-logger v0.1.0/go.mod h1:Ffsc4kAetI15Z0QNHme9hxl28zjQI6AOWF5f3S1yJzk=
+github.com/algo2go/kite-mcp-metrics v0.1.0 h1:StSpiTIjWno0gI+UkDz063d/UTs85tyyYwbmjnskiCE=
+github.com/algo2go/kite-mcp-metrics v0.1.0/go.mod h1:yWZSIx5+D5ZvldZiI4s2+Agg4dtV1tnd0TfRcwXw+L8=
 github.com/algo2go/kite-mcp-money v0.1.0 h1:4+HEW6r0/N7h+5jsjCNJZCHYwML/SkmE8/FylcfckJ8=
 github.com/algo2go/kite-mcp-money v0.1.0/go.mod h1:bjj4XnGM+YU2B8pPKTheanSVgW6ON3t0lh2d/m7ELek=
 github.com/algo2go/kite-mcp-oauth v0.1.0 h1:JpqI5MdQAYi8eJE0BaWlDDCRYA4LyQ6xxsNijcknOZI=

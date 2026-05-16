@@ -74,15 +74,6 @@ replace (
 	github.com/algo2go/kite-mcp-bootstrap/testutil => ./testutil
 )
 
-// Phase 0 canary (2026-05-16): kite-mcp-metrics is extracted to its
-// own algo2go module. This replace directive points the dependency at
-// the sibling working tree so bootstrap builds against the EXACT
-// extracted source during the cutover window. Phase B canary deletion
-// drops this replace (after this PR lands green), letting GOPROXY
-// resolve v0.1.0 as the canonical source — and at that point the
-// in-tree ./app/metrics directory is rm-ed.
-replace github.com/algo2go/kite-mcp-metrics => ../kite-mcp-metrics
-
 require (
 	cloud.google.com/go/compute/metadata v0.9.0 // indirect
 	github.com/antlr4-go/antlr/v4 v4.13.0 // indirect
