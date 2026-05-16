@@ -230,12 +230,26 @@ func RegisterToolsForRegistry(srv *server.MCPServer, manager *kc.Manager, exclud
 
 	// Register filtered tools, injecting _meta["ui/resourceUri"] for MCP Apps
 	// where the tool has an associated dashboard page.
+	//
+	// Sprint 5 additive Tool2 pattern: build the shared ToolHandlerDeps once
+	// per registration. Tools that implement common.Tool2 dispatch through
+	// the typed-deps surface via HandlerDeps(&deps); legacy tools that only
+	// implement common.Tool continue to receive the full *kc.Manager via
+	// the original Handler(manager) path. Once every Tool migrates to
+	// Tool2 the legacy branch + the bridge methods will retire (planned
+	// coordinator finishing PR).
+	sharedHandler := common.NewToolHandler(manager)
+	sharedDeps := &sharedHandler.Deps
 	for _, tool := range filteredTools {
 		t := tool.Tool()
 		if uri := resourceURIForTool(t.Name); uri != "" {
 			t = withAppUI(t, uri)
 		}
-		srv.AddTool(t, tool.Handler(manager))
+		if t2, ok := tool.(common.Tool2); ok {
+			srv.AddTool(t, t2.HandlerDeps(sharedDeps))
+		} else {
+			srv.AddTool(t, tool.Handler(manager))
+		}
 	}
 
 	// Register widget pages as MCP App resources (ui:// scheme).

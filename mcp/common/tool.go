@@ -63,3 +63,32 @@ type Tool interface {
 	Tool() gomcp.Tool
 	Handler(*kc.Manager) server.ToolHandlerFunc
 }
+
+// Tool2 is the typed-deps successor to Tool, introduced for the Sprint 5
+// signature-flip migration. Implementations expose a HandlerDeps method
+// that takes the narrow ToolHandlerDeps surface (27 Provider ports) in
+// place of the full *kc.Manager. Tools migrating to Tool2 typically also
+// retain their Handler(*kc.Manager) method as a 3-line bridge so the
+// repo-wide Tool interface stays satisfied during the transition window:
+//
+//   func (*FooTool) Handler(m *kc.Manager) server.ToolHandlerFunc {
+//       return (&FooTool{}).HandlerDeps(NewToolHandler(m).Deps)
+//   }
+//
+// The registry callsite in mcp/mcp.go uses a runtime type-switch: if a
+// tool implements Tool2 it dispatches through HandlerDeps with a shared
+// ToolHandlerDeps built once per server registration; otherwise it falls
+// back to the legacy Handler(*kc.Manager) path. Once every Tool also
+// implements Tool2, the coordinator PR retires the legacy Tool interface
+// (rename Tool2 -> Tool, drop the bridge methods, drop the type-switch).
+//
+// Empirical context: the 6th halt of the decomposition arc (2026-05-11)
+// found that the 111 tool BODIES were already 95%+ typed-port-routed
+// (only 6 residual manager.X() direct refs across the whole repo). The
+// signature flip is the closing architectural cleanup — the additive
+// Tool2 pattern lets it ship per-subdir in parallel instead of as one
+// atomic 111-handler change.
+type Tool2 interface {
+	Tool() gomcp.Tool
+	HandlerDeps(*ToolHandlerDeps) server.ToolHandlerFunc
+}
