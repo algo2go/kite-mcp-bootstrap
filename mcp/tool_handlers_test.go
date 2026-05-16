@@ -19,7 +19,7 @@ import (
 	"github.com/algo2go/kite-mcp-money"
 	"github.com/algo2go/kite-mcp-scheduler"
 	"github.com/algo2go/kite-mcp-watchlist"
-	"github.com/algo2go/kite-mcp-bootstrap/mcp/common"
+	"github.com/algo2go/kite-mcp-tools-common/common"
 	"github.com/algo2go/kite-mcp-bootstrap/mcp/paper"
 	"github.com/algo2go/kite-mcp-oauth"
 )

@@ -13,8 +13,8 @@ import (
 	"github.com/algo2go/kite-mcp-cqrs"
 	"github.com/algo2go/kite-mcp-sectors"
 	"github.com/algo2go/kite-mcp-usecases"
-	"github.com/algo2go/kite-mcp-bootstrap/mcp/common"
-	"github.com/algo2go/kite-mcp-bootstrap/mcp/plugin"
+	"github.com/algo2go/kite-mcp-tools-common/common"
+	"github.com/algo2go/kite-mcp-tools-common/plugin"
 )
 
 // --- Sector Exposure Analysis Tool ---

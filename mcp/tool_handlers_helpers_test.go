@@ -4,7 +4,7 @@ import (
 	"testing"
 
 	"github.com/stretchr/testify/assert"
-	"github.com/algo2go/kite-mcp-bootstrap/mcp/common"
+	"github.com/algo2go/kite-mcp-tools-common/common"
 )
 
 // ---------------------------------------------------------------------------

@@ -11,7 +11,7 @@ import (
 	"github.com/stretchr/testify/require"
 	"github.com/mark3labs/mcp-go/server"
 	"github.com/algo2go/kite-mcp-kc"
-	"github.com/algo2go/kite-mcp-bootstrap/mcp/common"
+	"github.com/algo2go/kite-mcp-tools-common/common"
 )
 
 // fakeIntegrityTool is a minimal Tool used only by integrity tests so we

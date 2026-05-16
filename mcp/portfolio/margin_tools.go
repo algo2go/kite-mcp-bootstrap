@@ -9,8 +9,8 @@ import (
 	"github.com/mark3labs/mcp-go/server"
 	"github.com/algo2go/kite-mcp-kc"
 	"github.com/algo2go/kite-mcp-cqrs"
-	"github.com/algo2go/kite-mcp-bootstrap/mcp/common"
-	"github.com/algo2go/kite-mcp-bootstrap/mcp/plugin"
+	"github.com/algo2go/kite-mcp-tools-common/common"
+	"github.com/algo2go/kite-mcp-tools-common/plugin"
 )
 
 // OrderMarginsTool calculates margin required for an order before placing it.

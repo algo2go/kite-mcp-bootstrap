@@ -14,7 +14,7 @@ import (
 	"github.com/algo2go/kite-mcp-kc"
 	"github.com/algo2go/kite-mcp-audit"
 	"github.com/algo2go/kite-mcp-templates"
-	"github.com/algo2go/kite-mcp-bootstrap/mcp/common"
+	"github.com/algo2go/kite-mcp-tools-common/common"
 	"github.com/algo2go/kite-mcp-bootstrap/mcp/paper"
 	"github.com/algo2go/kite-mcp-oauth"
 )

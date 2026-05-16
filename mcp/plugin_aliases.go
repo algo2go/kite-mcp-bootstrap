@@ -10,8 +10,8 @@ import (
 
 	"github.com/algo2go/kite-mcp-domain"
 	logport "github.com/algo2go/kite-mcp-logger"
-	"github.com/algo2go/kite-mcp-bootstrap/mcp/common"
-	"github.com/algo2go/kite-mcp-bootstrap/mcp/plugin"
+	"github.com/algo2go/kite-mcp-tools-common/common"
+	"github.com/algo2go/kite-mcp-tools-common/plugin"
 
 	// Side-effect imports — sub-packages whose init() functions
 	// register their tools via plugin.RegisterInternalTool. Without

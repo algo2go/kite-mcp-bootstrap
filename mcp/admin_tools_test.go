@@ -15,7 +15,7 @@ import (
 	"github.com/algo2go/kite-mcp-instruments"
 	"github.com/algo2go/kite-mcp-users"
 	"github.com/algo2go/kite-mcp-oauth"
-	"github.com/algo2go/kite-mcp-bootstrap/mcp/common"
+	"github.com/algo2go/kite-mcp-tools-common/common"
 )
 
 // newAdminTestManager creates a minimal Manager suitable for admin tool tests.

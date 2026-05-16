@@ -12,7 +12,7 @@ import (
 	"github.com/algo2go/kite-mcp-kc"
 	"github.com/algo2go/kite-mcp-cqrs"
 	"github.com/algo2go/kite-mcp-instruments"
-	"github.com/algo2go/kite-mcp-bootstrap/mcp/common"
+	"github.com/algo2go/kite-mcp-tools-common/common"
 )
 
 // ltpCacheMaxEntries caps the LTP cache so a long-running process or

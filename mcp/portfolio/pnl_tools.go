@@ -11,8 +11,8 @@ import (
 	"github.com/algo2go/kite-mcp-alerts"
 	"github.com/algo2go/kite-mcp-cqrs"
 	"github.com/algo2go/kite-mcp-oauth"
-	"github.com/algo2go/kite-mcp-bootstrap/mcp/common"
-	"github.com/algo2go/kite-mcp-bootstrap/mcp/plugin"
+	"github.com/algo2go/kite-mcp-tools-common/common"
+	"github.com/algo2go/kite-mcp-tools-common/plugin"
 )
 
 // GetPnLJournalTool retrieves historical P&L data with statistics.

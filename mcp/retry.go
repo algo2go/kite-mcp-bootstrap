@@ -1,7 +1,7 @@
 package mcp
 
 import (
-	"github.com/algo2go/kite-mcp-bootstrap/mcp/common"
+	"github.com/algo2go/kite-mcp-tools-common/common"
 )
 
 // Anchor 1 PR 1.8: RetryBrokerCall + isTransientError moved to

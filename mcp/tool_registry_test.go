@@ -7,7 +7,7 @@ import (
 	"github.com/stretchr/testify/require"
 	"github.com/algo2go/kite-mcp-bootstrap/mcp/misc"
 	"github.com/algo2go/kite-mcp-bootstrap/mcp/paper"
-	"github.com/algo2go/kite-mcp-bootstrap/mcp/plugin"
+	"github.com/algo2go/kite-mcp-tools-common/plugin"
 )
 
 // Test-only scaffolding for snapshotting/restoring the registry.

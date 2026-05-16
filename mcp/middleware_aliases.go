@@ -6,7 +6,7 @@ import (
 
 	"github.com/mark3labs/mcp-go/server"
 
-	"github.com/algo2go/kite-mcp-bootstrap/mcp/middleware"
+	"github.com/algo2go/kite-mcp-tools-common/middleware"
 )
 
 // middleware_aliases.go — Anchor 1 PR 1.2 (per .research/anchor-1-and-
