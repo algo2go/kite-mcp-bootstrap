@@ -48,7 +48,7 @@ func (m *Manager) Shutdown() {
 	m.Logger.Info("Shutting down Kite manager...")
 
 	// Stop session cleanup routines
-	m.sessionManager.StopCleanupRoutine()
+	m.SessionManager.StopCleanupRoutine()
 
 	// Shutdown metrics manager (stops cleanup routine)
 	if m.metrics != nil {

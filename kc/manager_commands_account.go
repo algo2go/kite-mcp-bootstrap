@@ -46,8 +46,8 @@ func (m *Manager) registerAccountCommands() error {
 		if m.userStore != nil {
 			deps.UserStore = m.userStore
 		}
-		if m.sessionManager != nil {
-			deps.Sessions = m.sessionManager
+		if m.SessionManager != nil {
+			deps.Sessions = m.SessionManager
 		}
 		uc := usecases.NewDeleteMyAccountUseCase(deps, m.Logger)
 		if m.eventStore != nil {

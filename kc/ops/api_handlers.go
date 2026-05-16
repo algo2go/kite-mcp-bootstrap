@@ -406,7 +406,7 @@ func (d *DashboardHandler) connections(w http.ResponseWriter, r *http.Request) {
 	}
 	agg := map[string]*sessionAgg{}
 
-	if reg := d.manager.SessionManager(); reg != nil {
+	if reg := d.manager.SessionManager; reg != nil {
 		for _, s := range reg.ListActiveSessions() {
 			if s == nil {
 				continue

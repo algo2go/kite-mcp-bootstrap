@@ -1063,7 +1063,7 @@ func TestManagedSessionService(t *testing.T) {
 	}
 	defer m.Shutdown()
 
-	reg := m.SessionManager()
+	reg := m.SessionManager
 	svc2 := NewManagedSessionService(reg)
 	if svc2.Registry() != reg {
 		t.Error("Registry() should return the configured registry")

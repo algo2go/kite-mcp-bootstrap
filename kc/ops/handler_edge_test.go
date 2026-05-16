@@ -189,7 +189,7 @@ func TestPush100_BuildSessions_WithData(t *testing.T) {
 	h := newPush100OpsHandlerFull(t)
 
 	// Create sessions with KiteSessionData
-	sm := h.manager.SessionManager()
+	sm := h.manager.SessionManager
 	_ = sm.GenerateWithData(&kc.KiteSessionData{Email: "user1@test.com"})
 	_ = sm.GenerateWithData(&kc.KiteSessionData{Email: "user2@test.com"})
 	_ = sm.GenerateWithData(&kc.KiteSessionData{Email: ""}) // orphan session â€” should be skipped
@@ -209,7 +209,7 @@ func TestPush100_BuildSessionsForUser(t *testing.T) {
 	t.Parallel()
 	h := newPush100OpsHandlerFull(t)
 
-	sm := h.manager.SessionManager()
+	sm := h.manager.SessionManager
 	_ = sm.GenerateWithData(&kc.KiteSessionData{Email: "target@test.com"})
 	_ = sm.GenerateWithData(&kc.KiteSessionData{Email: "other@test.com"})
 

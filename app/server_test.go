@@ -1000,7 +1000,7 @@ func TestPaperLTPAdapter_WithSession_NilData(t *testing.T) {
 	mgr := newTestManager(t)
 
 	// Create a session manually — the session will have nil data
-	sessMgr := mgr.SessionManager()
+	sessMgr := mgr.SessionManager
 	_ = sessMgr.Generate() // creates a session with nil data
 
 	adapter := &paperLTPAdapter{manager: mgr}
@@ -1408,7 +1408,7 @@ func TestPaperLTPAdapter_WithSession_KiteSessionData_NilClient(t *testing.T) {
 	mgr := newTestManager(t)
 
 	// Create a session with KiteSessionData that has nil Kite
-	sessMgr := mgr.SessionManager()
+	sessMgr := mgr.SessionManager
 	sessionID := sessMgr.GenerateWithData(&kc.KiteSessionData{
 		Email: "test@test.com",
 		// Kite field is nil — simulates a session where client is not yet set
@@ -1898,7 +1898,7 @@ func TestPaperLTPAdapter_SessionWithNilData(t *testing.T) {
 	mgr := newTestManagerWithDB(t)
 
 	// Generate a session to have at least one active session, but with no KiteSessionData.
-	sess := mgr.SessionManager()
+	sess := mgr.SessionManager
 	_ = sess.GenerateWithData(nil)
 
 	adapter := &paperLTPAdapter{manager: mgr}

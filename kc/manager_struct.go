@@ -88,7 +88,7 @@ type Manager struct {
 	sessionLifecycle *SessionLifecycleService // MCP session lifecycle facade (get/create/clear/complete)
 
 	Instruments       *instruments.Manager
-	sessionManager    *SessionRegistry
+	SessionManager    *SessionRegistry
 	SessionSigner     *SessionSigner
 	tokenStore        *KiteTokenStore             // per-email Kite token cache
 	credentialStore   *KiteCredentialStore        // per-email Kite developer app credentials

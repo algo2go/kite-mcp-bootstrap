@@ -46,7 +46,7 @@ func TestNewManager(t *testing.T) {
 		t.Error("Expected instruments manager to be initialized")
 	}
 
-	if manager.sessionManager == nil {
+	if manager.SessionManager == nil {
 		t.Error("Expected session registry to be initialized")
 	}
 
@@ -348,7 +348,7 @@ func TestManager_MoreAccessors(t *testing.T) {
 	// GetOrCreateSessionWithEmail - use an existing session but clear its data first
 	sessionID := m.GenerateSession()
 	// Clear data to force re-creation
-	m.sessionManager.UpdateSessionData(sessionID, nil)
+	m.SessionManager.UpdateSessionData(sessionID, nil)
 	kd, _, err := m.GetOrCreateSessionWithEmail(sessionID, "test@example.com")
 	if err != nil {
 		t.Fatalf("GetOrCreateSessionWithEmail error: %v", err)
@@ -743,7 +743,7 @@ func TestNew_WithAlertDB_SessionPersistence(t *testing.T) {
 	defer m.Shutdown()
 
 	// Verify session manager has DB set
-	sm := m.SessionManager()
+	sm := m.SessionManager
 	if sm == nil {
 		t.Error("SessionManager should not be nil")
 	}

@@ -243,13 +243,13 @@ func TestSessionManager(t *testing.T) {
 		t.Fatalf("Expected no error creating manager, got: %v", err)
 	}
 
-	sessionManager := manager.SessionManager()
+	sessionManager := manager.SessionManager
 	if sessionManager == nil {
 		t.Error("Expected non-nil session registry")
 	}
 
 	// Verify it's the same instance
-	if sessionManager != manager.sessionManager {
+	if sessionManager != manager.SessionManager {
 		t.Error("Expected returned session manager to be the same instance")
 	}
 }
@@ -277,7 +277,7 @@ func TestGetOrCreateSession(t *testing.T) {
 	sessionID := manager.GenerateSession()
 
 	// Clear the data from the session to force creation of new data
-	err = manager.sessionManager.UpdateSessionData(sessionID, nil)
+	err = manager.SessionManager.UpdateSessionData(sessionID, nil)
 	if err != nil {
 		t.Fatalf("Failed to clear session data: %v", err)
 	}

@@ -212,7 +212,7 @@ func newMockKiteManager(t *testing.T, mockURL string) *kc.Manager {
 	// First, trigger session creation via GetOrCreateSessionWithEmail so the
 	// session exists in the registry.  Then overwrite its data with our
 	// mock-configured KiteSessionData.
-	sm := mgr.SessionManager()
+	sm := mgr.SessionManager
 	require.NotNil(t, sm)
 	_, _, _ = mgr.GetOrCreateSessionWithEmail(mockSessionID, mockEmail)
 	require.NoError(t, sm.UpdateSessionData(mockSessionID, kd))

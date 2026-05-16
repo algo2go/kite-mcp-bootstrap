@@ -90,7 +90,7 @@ func (*ListMCPSessionsTool) Handler(manager *kc.Manager) server.ToolHandlerFunc 
 		}
 		emailLower := strings.ToLower(email)
 
-		reg := manager.SessionManager()
+		reg := manager.SessionManager
 		if reg == nil {
 			return mcp.NewToolResultError("Session registry not available."), nil
 		}
@@ -208,7 +208,7 @@ func (*RevokeMCPSessionTool) Handler(manager *kc.Manager) server.ToolHandlerFunc
 			return mcp.NewToolResultError("session_id is required."), nil
 		}
 
-		reg := manager.SessionManager()
+		reg := manager.SessionManager
 		if reg == nil {
 			return mcp.NewToolResultError("Session registry not available."), nil
 		}

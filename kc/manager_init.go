@@ -482,8 +482,8 @@ func (m *Manager) initFocusedServices(cfg Config, instrumentsManager *instrument
 		Metrics:       metricsImpl,
 		DevMode:       cfg.DevMode,
 	})
-	m.SessionSvc.SetSessionManager(m.sessionManager)
-	m.ManagedSessionSvc = NewManagedSessionService(m.sessionManager)
+	m.SessionSvc.SetSessionManager(m.SessionManager)
+	m.ManagedSessionSvc = NewManagedSessionService(m.SessionManager)
 
 	// Initialize portfolio and order services
 	m.PortfolioSvc = NewPortfolioService(m.SessionSvc, cfg.Logger)
@@ -505,8 +505,8 @@ func (m *Manager) initSessionPersistence(cfg Config) {
 	if m.alertDB == nil {
 		return
 	}
-	m.sessionManager.SetDB(&sessionDBAdapter{db: m.alertDB})
-	if err := m.sessionManager.LoadFromDB(); err != nil {
+	m.SessionManager.SetDB(&sessionDBAdapter{db: m.alertDB})
+	if err := m.SessionManager.LoadFromDB(); err != nil {
 		cfg.Logger.Error("Failed to load sessions from DB", "error", err)
 	} else {
 		cfg.Logger.Info("Sessions loaded from database")

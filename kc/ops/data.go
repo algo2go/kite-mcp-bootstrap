@@ -98,7 +98,7 @@ func (h *Handler) buildOverview() OverviewData {
 // buildSessions returns a snapshot of active sessions.
 // All fields are copied by value to prevent callers from mutating internal session state.
 func (h *Handler) buildSessions() []SessionInfo {
-	sessions := h.manager.SessionManager().ListActiveSessions()
+	sessions := h.manager.SessionManager.ListActiveSessions()
 	out := make([]SessionInfo, 0, len(sessions))
 	for _, s := range sessions {
 		// Copy scalar fields from the session to avoid holding pointers to internal state.

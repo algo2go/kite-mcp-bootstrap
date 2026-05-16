@@ -124,7 +124,7 @@ func TestSetupGracefulShutdown_NilOptionalFields(t *testing.T) {
 // ===========================================================================
 func TestPaperLTPAdapter_SessionWithNonKiteData(t *testing.T) {
 	mgr := newTestManagerWithDB(t)
-	sess := mgr.SessionManager()
+	sess := mgr.SessionManager
 	// Generate a session with non-KiteSessionData (a string)
 	_ = sess.GenerateWithData("not a KiteSessionData")
 
@@ -137,7 +137,7 @@ func TestPaperLTPAdapter_SessionWithNonKiteData(t *testing.T) {
 
 func TestPaperLTPAdapter_SessionWithEmptyKiteData(t *testing.T) {
 	mgr := newTestManagerWithDB(t)
-	sess := mgr.SessionManager()
+	sess := mgr.SessionManager
 	// Generate a session with KiteSessionData where Kite is nil
 	_ = sess.GenerateWithData(&kc.KiteSessionData{})
 

@@ -13,7 +13,7 @@ type paperLTPAdapter struct {
 }
 
 func (a *paperLTPAdapter) GetLTP(instruments ...string) (map[string]float64, error) {
-	sessions := a.manager.SessionManager().ListActiveSessions()
+	sessions := a.manager.SessionManager.ListActiveSessions()
 	if len(sessions) == 0 {
 		return nil, fmt.Errorf("no active Kite sessions for LTP lookup")
 	}

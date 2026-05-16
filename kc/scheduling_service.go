@@ -33,7 +33,7 @@ type SchedulingService struct {
 	// closure pair in this facade. The service constructs the registry
 	// then hands it back to Manager via setSessionManager so subsequent
 	// init phases (initFocusedServices' SessionSvc construction) read
-	// it from m.sessionManager directly.
+	// it from m.SessionManager directly.
 	setSessionManager func(*SessionRegistry)
 
 	// SessionSvc is read by CleanupExpiredSessions + StopCleanupRoutine.
@@ -56,7 +56,7 @@ type SchedulingService struct {
 func newSchedulingService(m *Manager) *SchedulingService {
 	return &SchedulingService{
 		getLogger:         func() *slog.Logger { return m.Logger },
-		setSessionManager: func(sm *SessionRegistry) { m.sessionManager = sm },
+		setSessionManager: func(sm *SessionRegistry) { m.SessionManager = sm },
 		getSessionSvc:     func() *SessionService { return m.SessionSvc },
 		getMetrics:        func() *metrics.Manager { return m.metrics },
 	}
@@ -65,7 +65,7 @@ func newSchedulingService(m *Manager) *SchedulingService {
 // initialize creates and configures the session registry with its cleanup
 // hook and background cleanup routine. Called once from Manager bootstrap
 // (initFocusedServices, Phase 13). After this method returns,
-// m.sessionManager is non-nil and subsequent phases (NewSessionService) can
+// m.SessionManager is non-nil and subsequent phases (NewSessionService) can
 // consume it.
 func (s *SchedulingService) initialize() {
 	sessionManager := NewSessionRegistry(s.getLogger())

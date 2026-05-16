@@ -76,11 +76,6 @@ func (m *Manager) QueryBus() *cqrs.InMemoryBus {
 // Session registry + signer
 // ---------------------------------------------------------------------------
 
-// SessionManager returns the MCP session manager instance.
-func (m *Manager) SessionManager() *SessionRegistry {
-	return m.sessionManager
-}
-
 // ---------------------------------------------------------------------------
 // MCP server handle (for elicitation)
 // ---------------------------------------------------------------------------

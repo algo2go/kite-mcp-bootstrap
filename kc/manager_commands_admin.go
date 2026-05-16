@@ -139,7 +139,7 @@ func (m *Manager) registerAdminUserCommands() error {
 	return registerAdminUserCommandsOnBus(m.commandBus, AdminUserRegistrarDeps{
 		UserStore:        m.userStore,
 		RiskGuardGetter:  m.RiskGuard,
-		SessionManager:   m.sessionManager,
+		SessionManager:   m.SessionManager,
 		DispatcherGetter: m.eventing.Dispatcher,
 	}, m.Logger)
 }

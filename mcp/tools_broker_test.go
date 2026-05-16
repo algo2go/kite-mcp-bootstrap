@@ -240,7 +240,7 @@ func newFactoryManager(t *testing.T, mockURL string) *kc.Manager {
 		Email:  factoryEmail,
 	}
 
-	sm := mgr.SessionManager()
+	sm := mgr.SessionManager
 	require.NotNil(t, sm)
 	_, _, _ = mgr.GetOrCreateSessionWithEmail(factorySessionID, factoryEmail)
 	require.NoError(t, sm.UpdateSessionData(factorySessionID, kd))

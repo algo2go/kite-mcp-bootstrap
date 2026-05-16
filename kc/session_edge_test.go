@@ -754,7 +754,7 @@ func TestLoadSessions_WithDB(t *testing.T) {
 	t.Parallel()
 	m := newTestManagerWithDB(t)
 	// SessionManager().LoadFromDB should not error on an empty DB
-	if sm := m.SessionManager(); sm != nil {
+	if sm := m.SessionManager; sm != nil {
 		_ = sm.LoadFromDB()
 	}
 }
@@ -847,7 +847,7 @@ func TestTerminateByEmail_WithActiveSession(t *testing.T) {
 	// Create session with email
 	_, _, _ = m.GetOrCreateSessionWithEmail("aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeee10", "terminate@test.com")
 
-	count := m.SessionManager().TerminateByEmail("terminate@test.com")
+	count := m.SessionManager.TerminateByEmail("terminate@test.com")
 	if count < 1 {
 		t.Errorf("TerminateByEmail returned %d, expected >= 1", count)
 	}
@@ -857,7 +857,7 @@ func TestTerminateByEmail_NoSessions(t *testing.T) {
 	t.Parallel()
 	m, _ := newTestManager("k", "s")
 
-	count := m.SessionManager().TerminateByEmail("nobody@test.com")
+	count := m.SessionManager.TerminateByEmail("nobody@test.com")
 	if count != 0 {
 		t.Errorf("TerminateByEmail returned %d, expected 0", count)
 	}
@@ -1142,9 +1142,9 @@ func TestCleanupRoutine_StopCancelsGoroutine(t *testing.T) {
 	m, _ := newTestManager("k", "s")
 	// The session manager starts a cleanup routine.
 	// StopCleanupRoutine should cancel it without blocking.
-	m.SessionManager().StopCleanupRoutine()
+	m.SessionManager.StopCleanupRoutine()
 	// A second call should be safe (idempotent)
-	m.SessionManager().StopCleanupRoutine()
+	m.SessionManager.StopCleanupRoutine()
 }
 
 // TestSessionRegistry_Close_StopsGoroutine proves StopCleanupRoutine waits
@@ -1366,7 +1366,7 @@ func TestCompleteSessionAndRotate_OldIDIsTerminated(t *testing.T) {
 		t.Fatalf("CompleteSessionAndRotate: %v", err)
 	}
 
-	terminated, _ := m.SessionManager().Validate(oldID)
+	terminated, _ := m.SessionManager.Validate(oldID)
 	if !terminated {
 		t.Error("OWASP A07 regression: old sessionID survived rotation — pre-set attacker can still authenticate")
 	}

@@ -859,7 +859,7 @@ func TestSessionRegistry_TerminateByEmail(t *testing.T) {
 	}
 	defer m.Shutdown()
 
-	sm := m.SessionManager()
+	sm := m.SessionManager
 
 	// Create sessions and set email data
 	id1 := sm.Generate()
@@ -914,7 +914,7 @@ func TestSessionRegistry_UpdateSessionField(t *testing.T) {
 	}
 	defer m.Shutdown()
 
-	sm := m.SessionManager()
+	sm := m.SessionManager
 	id := sm.Generate()
 
 	// Set initial data
@@ -968,7 +968,7 @@ func TestLoadSessions_EmptyDB(t *testing.T) {
 	defer m.Shutdown()
 
 	// LoadSessions should succeed (already called during New, but verify no panic)
-	err = m.sessionManager.LoadFromDB()
+	err = m.SessionManager.LoadFromDB()
 	if err != nil {
 		t.Errorf("LoadFromDB error: %v", err)
 	}

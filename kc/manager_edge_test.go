@@ -1710,7 +1710,7 @@ func TestManagerAccessors(t *testing.T) {
 	if m.IsLocalMode() {
 		t.Error("Expected not local mode for http")
 	}
-	if m.SessionManager() == nil {
+	if m.SessionManager == nil {
 		t.Error("SessionManager should not be nil")
 	}
 	if m.SessionSigner == nil {

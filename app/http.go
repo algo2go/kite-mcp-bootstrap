@@ -1082,7 +1082,7 @@ func (app *App) createSSEServer(mcpServer *server.MCPServer, url string) *server
 // behavior (validation, termination, persistence, cleanup hooks) is
 // unchanged. See kc/client_hint_resolver.go for the detailed design.
 func (app *App) createStreamableHTTPServer(mcpServer *server.MCPServer, kcManager *kc.Manager) *server.StreamableHTTPServer {
-	resolver := newClientHintedResolver(kcManager.SessionManager())
+	resolver := newClientHintedResolver(kcManager.SessionManager)
 	return server.NewStreamableHTTPServer(mcpServer,
 		server.WithSessionIdManagerResolver(resolver),
 		server.WithLogger(util.DefaultLogger()),
