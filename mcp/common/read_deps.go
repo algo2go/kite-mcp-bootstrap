@@ -1,9 +1,9 @@
 package common
 
 import (
-	"github.com/algo2go/kite-mcp-bootstrap/kc"
+	"github.com/algo2go/kite-mcp-kc"
 	logport "github.com/algo2go/kite-mcp-logger"
-	"github.com/algo2go/kite-mcp-bootstrap/kc/ports"
+	"github.com/algo2go/kite-mcp-kc/ports"
 )
 
 // ReadDepsFields is the read/observability-context subset of

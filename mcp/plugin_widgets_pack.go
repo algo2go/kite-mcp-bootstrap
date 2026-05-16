@@ -5,7 +5,7 @@ import (
 	"log/slog"
 
 	gomcp "github.com/mark3labs/mcp-go/mcp"
-	"github.com/algo2go/kite-mcp-bootstrap/kc"
+	"github.com/algo2go/kite-mcp-kc"
 	"github.com/algo2go/kite-mcp-audit"
 	"github.com/algo2go/kite-mcp-oauth"
 )

@@ -8,10 +8,10 @@ import (
 
 	"github.com/mark3labs/mcp-go/mcp"
 	"github.com/mark3labs/mcp-go/server"
-	"github.com/algo2go/kite-mcp-bootstrap/kc"
+	"github.com/algo2go/kite-mcp-kc"
 	"github.com/algo2go/kite-mcp-cqrs"
 	"github.com/algo2go/kite-mcp-domain"
-	"github.com/algo2go/kite-mcp-bootstrap/kc/ports"
+	"github.com/algo2go/kite-mcp-kc/ports"
 	"github.com/algo2go/kite-mcp-scheduler"
 	"github.com/algo2go/kite-mcp-usecases"
 	"github.com/algo2go/kite-mcp-bootstrap/mcp/common"

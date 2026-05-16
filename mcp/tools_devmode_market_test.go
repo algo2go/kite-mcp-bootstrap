@@ -5,7 +5,7 @@ import (
 	"time"
 
 	"github.com/stretchr/testify/assert"
-	"github.com/algo2go/kite-mcp-bootstrap/kc"
+	"github.com/algo2go/kite-mcp-kc"
 )
 
 // DevMode session handler tests: tool execution through DevMode manager with stub Kite client.

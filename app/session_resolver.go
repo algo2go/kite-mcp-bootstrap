@@ -4,7 +4,7 @@ import (
 	"net/http"
 
 	"github.com/mark3labs/mcp-go/server"
-	"github.com/algo2go/kite-mcp-bootstrap/kc"
+	"github.com/algo2go/kite-mcp-kc"
 )
 
 // clientHintedResolver adapts *kc.ClientHintResolver to the mcp-go

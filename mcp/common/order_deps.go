@@ -1,6 +1,6 @@
 package common
 
-import "github.com/algo2go/kite-mcp-bootstrap/kc"
+import "github.com/algo2go/kite-mcp-kc"
 
 // OrderDepsFields is the order-context subset of ToolHandlerDeps:
 // risk-guard pre-trade checks, broker-client resolution per email,

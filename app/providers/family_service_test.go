@@ -7,7 +7,7 @@ import (
 	"go.uber.org/fx"
 	"go.uber.org/fx/fxtest"
 
-	"github.com/algo2go/kite-mcp-bootstrap/kc"
+	"github.com/algo2go/kite-mcp-kc"
 )
 
 // family_service_test.go — Anchor 6 PR 6.11 tests.

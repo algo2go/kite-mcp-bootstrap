@@ -7,7 +7,7 @@ import (
 	"reflect"
 
 	"github.com/mark3labs/mcp-go/mcp"
-	"github.com/algo2go/kite-mcp-bootstrap/kc"
+	"github.com/algo2go/kite-mcp-kc"
 )
 
 // MarshalResponse marshals data to JSON and returns an MCP text result.

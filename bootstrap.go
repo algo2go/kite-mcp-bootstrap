@@ -20,7 +20,7 @@ import (
 	"sync/atomic"
 
 	"github.com/algo2go/kite-mcp-bootstrap/app"
-	"github.com/algo2go/kite-mcp-bootstrap/kc/ops"
+	"github.com/algo2go/kite-mcp-kc/ops"
 )
 
 // MemoryLimitBytes is the soft GC target for the Go runtime — set via

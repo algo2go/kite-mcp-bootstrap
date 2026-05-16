@@ -3,11 +3,11 @@ package common
 import (
 	"time"
 
-	"github.com/algo2go/kite-mcp-bootstrap/kc"
+	"github.com/algo2go/kite-mcp-kc"
 	"github.com/algo2go/kite-mcp-alerts"
 	"github.com/algo2go/kite-mcp-cqrs"
 	logport "github.com/algo2go/kite-mcp-logger"
-	"github.com/algo2go/kite-mcp-bootstrap/kc/ports"
+	"github.com/algo2go/kite-mcp-kc/ports"
 	"github.com/algo2go/kite-mcp-riskguard"
 )
 

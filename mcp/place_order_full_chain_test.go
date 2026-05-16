@@ -59,7 +59,7 @@ import (
 	"github.com/algo2go/kite-mcp-broker"
 	brokermock "github.com/algo2go/kite-mcp-broker/mock"
 	"github.com/algo2go/kite-mcp-oauth"
-	"github.com/algo2go/kite-mcp-bootstrap/kc"
+	"github.com/algo2go/kite-mcp-kc"
 )
 
 // fullChainMockFactory implements broker.Factory and hands out a SHARED

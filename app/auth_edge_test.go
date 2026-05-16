@@ -10,7 +10,7 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	"github.com/algo2go/kite-mcp-bootstrap/kc"
+	"github.com/algo2go/kite-mcp-kc"
 	logport "github.com/algo2go/kite-mcp-logger"
 	"github.com/algo2go/kite-mcp-registry"
 	"github.com/algo2go/kite-mcp-users"

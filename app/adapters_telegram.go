@@ -1,7 +1,7 @@
 package app
 
 import (
-	"github.com/algo2go/kite-mcp-bootstrap/kc"
+	"github.com/algo2go/kite-mcp-kc"
 	"github.com/algo2go/kite-mcp-alerts"
 	"github.com/algo2go/kite-mcp-riskguard"
 	tgbot "github.com/algo2go/kite-mcp-telegram"

@@ -44,7 +44,7 @@ import (
 	alerts "github.com/algo2go/kite-mcp-alerts"
 	"github.com/algo2go/kite-mcp-audit"
 	brokermock "github.com/algo2go/kite-mcp-broker/mock"
-	"github.com/algo2go/kite-mcp-bootstrap/kc"
+	"github.com/algo2go/kite-mcp-kc"
 )
 
 // fullChainHarness bundles the three artefacts each chain test needs

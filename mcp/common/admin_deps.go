@@ -1,6 +1,6 @@
 package common
 
-import "github.com/algo2go/kite-mcp-bootstrap/kc"
+import "github.com/algo2go/kite-mcp-kc"
 
 // AdminDepsFields is the admin/observability-context subset of
 // ToolHandlerDeps: registry of MCP-tool clients, audit log retention,

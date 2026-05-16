@@ -1,7 +1,7 @@
 package mcp
 
 import (
-	"github.com/algo2go/kite-mcp-bootstrap/kc"
+	"github.com/algo2go/kite-mcp-kc"
 	"github.com/algo2go/kite-mcp-ticker"
 	"github.com/algo2go/kite-mcp-bootstrap/mcp/misc"
 )

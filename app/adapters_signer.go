@@ -1,7 +1,7 @@
 package app
 
 import (
-	"github.com/algo2go/kite-mcp-bootstrap/kc"
+	"github.com/algo2go/kite-mcp-kc"
 )
 
 type signerAdapter struct {

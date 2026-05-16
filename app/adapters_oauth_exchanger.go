@@ -8,7 +8,7 @@ import (
 	"sync"
 
 	"github.com/algo2go/kite-mcp-broker"
-	"github.com/algo2go/kite-mcp-bootstrap/kc"
+	"github.com/algo2go/kite-mcp-kc"
 	"github.com/algo2go/kite-mcp-audit"
 	"github.com/algo2go/kite-mcp-cqrs"
 	logport "github.com/algo2go/kite-mcp-logger"

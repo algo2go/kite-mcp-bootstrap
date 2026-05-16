@@ -7,7 +7,7 @@ import (
 	"os"
 	"testing"
 
-	"github.com/algo2go/kite-mcp-bootstrap/kc"
+	"github.com/algo2go/kite-mcp-kc"
 	"github.com/algo2go/kite-mcp-instruments"
 	"go.uber.org/goleak"
 )

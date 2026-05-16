@@ -3,7 +3,7 @@ package app
 import (
 	"fmt"
 
-	"github.com/algo2go/kite-mcp-bootstrap/kc"
+	"github.com/algo2go/kite-mcp-kc"
 )
 
 // paperLTPAdapter bridges kc.Manager to papertrading.LTPProvider by using

@@ -3,7 +3,7 @@ package app
 import (
 	"time"
 
-	"github.com/algo2go/kite-mcp-bootstrap/kc"
+	"github.com/algo2go/kite-mcp-kc"
 )
 
 // briefingTokenAdapter bridges a token store to alerts.TokenChecker.

@@ -4,7 +4,7 @@ import (
 	"context"
 	"time"
 
-	"github.com/algo2go/kite-mcp-bootstrap/kc"
+	"github.com/algo2go/kite-mcp-kc"
 	"github.com/algo2go/kite-mcp-audit"
 )
 

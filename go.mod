@@ -35,6 +35,7 @@ require (
 	github.com/algo2go/kite-mcp-i18n v0.1.0
 	github.com/algo2go/kite-mcp-instruments v0.1.0
 	github.com/algo2go/kite-mcp-isttz v0.1.0
+	github.com/algo2go/kite-mcp-kc v0.1.0
 	github.com/algo2go/kite-mcp-legaldocs v0.1.0
 	github.com/algo2go/kite-mcp-logger v0.1.0
 	github.com/algo2go/kite-mcp-metrics v0.1.0
@@ -73,6 +74,15 @@ replace (
 	github.com/algo2go/kite-mcp-bootstrap/plugins => ./plugins
 	github.com/algo2go/kite-mcp-bootstrap/testutil => ./testutil
 )
+
+// Phase 1 canary (2026-05-16): kite-mcp-kc is extracted to its own
+// algo2go module. This replace directive points the dependency at the
+// sibling working tree so bootstrap builds against the EXACT extracted
+// source during the cutover window. Phase B canary deletion drops this
+// replace (after this PR lands green), letting GOPROXY resolve v0.1.0
+// as the canonical source — and at that point the in-tree ./kc/
+// directory is rm-ed.
+replace github.com/algo2go/kite-mcp-kc => ../kite-mcp-kc
 
 require (
 	cloud.google.com/go/compute/metadata v0.9.0 // indirect

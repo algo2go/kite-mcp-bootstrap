@@ -1,7 +1,7 @@
 package providers
 
 import (
-	"github.com/algo2go/kite-mcp-bootstrap/kc"
+	"github.com/algo2go/kite-mcp-kc"
 )
 
 // credential_svc.go — Anchor 6 PR 6.1 (per .research/tier-5-and-anchor-
