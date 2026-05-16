@@ -1,0 +1,23 @@
+// Go workspace declaration for kite-mcp-bootstrap.
+//
+// 4 in-tree workspace members (mirrors the kite-mcp-server source structure
+// at HEAD `b6b4f6a` when relocated 2026-05-16):
+//   - .              : root module (kc/, kc/ops/, kc/ports/, app/, app/metrics/, mcp/)
+//   - ./app/providers : Fx provider/recipe sub-module
+//   - ./plugins      : plugin scaffolding sub-module
+//   - ./testutil     : test fakes + fixtures sub-module
+//
+// 28 algo2go/kite-mcp-* modules are external (fetched from GOPROXY).
+//
+// CI: matrix-test per workspace member is the canonical path. The default
+// `go test ./...` from the root still works because workspace mode includes
+// all members.
+
+go 1.25.0
+
+use (
+	.
+	./app/providers
+	./plugins
+	./testutil
+)
