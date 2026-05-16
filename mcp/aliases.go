@@ -99,6 +99,14 @@ func NewToolHandler(manager *kc.Manager) *ToolHandler {
 	return common.NewToolHandler(manager)
 }
 
+// NewToolHandlerFromDeps constructs a ToolHandler bound to an already-
+// built ToolHandlerDeps surface (Sprint 5 Tool2 entry path). Passthrough
+// for mcp.NewToolHandlerFromDeps; new Tool2-implementing handlers may
+// call common.NewToolHandlerFromDeps directly.
+func NewToolHandlerFromDeps(deps *ToolHandlerDeps) *ToolHandler {
+	return common.NewToolHandlerFromDeps(deps)
+}
+
 // NewArgParser wraps a tool-call arg map for fluent extraction.
 // Passthrough to common.NewArgParser.
 func NewArgParser(args map[string]any) *ArgParser {

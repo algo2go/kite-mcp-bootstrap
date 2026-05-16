@@ -58,8 +58,18 @@ func (*QuotesTool) Tool() mcp.Tool {
 	)
 }
 
-func (*QuotesTool) Handler(manager *kc.Manager) server.ToolHandlerFunc {
-	handler := NewToolHandler(manager)
+func (t *QuotesTool) Handler(manager *kc.Manager) server.ToolHandlerFunc {
+	// Sprint 5 Tool2 bridge: delegate to HandlerDeps. The legacy
+	// Handler entry point is retained for common.Tool interface
+	// satisfaction during the transition window. Once every Tool
+	// also implements Tool2 the bridge is dropped (coordinator PR).
+	h := NewToolHandler(manager)
+	return t.HandlerDeps(&h.Deps)
+}
+
+// HandlerDeps implements common.Tool2 for QuotesTool.
+func (*QuotesTool) HandlerDeps(deps *ToolHandlerDeps) server.ToolHandlerFunc {
+	handler := NewToolHandlerFromDeps(deps)
 	return func(ctx context.Context, request mcp.CallToolRequest) (*mcp.CallToolResult, error) {
 		handler.TrackToolCall(ctx, "get_quotes")
 		p := NewArgParser(request.GetArguments())
@@ -115,8 +125,18 @@ func (*InstrumentsSearchTool) Tool() mcp.Tool {
 	)
 }
 
-func (*InstrumentsSearchTool) Handler(manager *kc.Manager) server.ToolHandlerFunc {
-	handler := NewToolHandler(manager)
+func (t *InstrumentsSearchTool) Handler(manager *kc.Manager) server.ToolHandlerFunc {
+	// Sprint 5 Tool2 bridge: delegate to HandlerDeps. The legacy
+	// Handler entry point is retained for common.Tool interface
+	// satisfaction during the transition window. Once every Tool
+	// also implements Tool2 the bridge is dropped (coordinator PR).
+	h := NewToolHandler(manager)
+	return t.HandlerDeps(&h.Deps)
+}
+
+// HandlerDeps implements common.Tool2 for InstrumentsSearchTool.
+func (*InstrumentsSearchTool) HandlerDeps(deps *ToolHandlerDeps) server.ToolHandlerFunc {
+	handler := NewToolHandlerFromDeps(deps)
 	return func(ctx context.Context, request mcp.CallToolRequest) (*mcp.CallToolResult, error) {
 		handler.TrackToolCall(ctx, "search_instruments")
 		p := NewArgParser(request.GetArguments())
@@ -241,8 +261,18 @@ func (*HistoricalDataTool) Tool() mcp.Tool {
 	)
 }
 
-func (*HistoricalDataTool) Handler(manager *kc.Manager) server.ToolHandlerFunc {
-	handler := NewToolHandler(manager)
+func (t *HistoricalDataTool) Handler(manager *kc.Manager) server.ToolHandlerFunc {
+	// Sprint 5 Tool2 bridge: delegate to HandlerDeps. The legacy
+	// Handler entry point is retained for common.Tool interface
+	// satisfaction during the transition window. Once every Tool
+	// also implements Tool2 the bridge is dropped (coordinator PR).
+	h := NewToolHandler(manager)
+	return t.HandlerDeps(&h.Deps)
+}
+
+// HandlerDeps implements common.Tool2 for HistoricalDataTool.
+func (*HistoricalDataTool) HandlerDeps(deps *ToolHandlerDeps) server.ToolHandlerFunc {
+	handler := NewToolHandlerFromDeps(deps)
 	return func(ctx context.Context, request mcp.CallToolRequest) (*mcp.CallToolResult, error) {
 		handler.TrackToolCall(ctx, "get_historical_data")
 		p := NewArgParser(request.GetArguments())
@@ -313,8 +343,18 @@ func (*LTPTool) Tool() mcp.Tool {
 	)
 }
 
-func (*LTPTool) Handler(manager *kc.Manager) server.ToolHandlerFunc {
-	handler := NewToolHandler(manager)
+func (t *LTPTool) Handler(manager *kc.Manager) server.ToolHandlerFunc {
+	// Sprint 5 Tool2 bridge: delegate to HandlerDeps. The legacy
+	// Handler entry point is retained for common.Tool interface
+	// satisfaction during the transition window. Once every Tool
+	// also implements Tool2 the bridge is dropped (coordinator PR).
+	h := NewToolHandler(manager)
+	return t.HandlerDeps(&h.Deps)
+}
+
+// HandlerDeps implements common.Tool2 for LTPTool.
+func (*LTPTool) HandlerDeps(deps *ToolHandlerDeps) server.ToolHandlerFunc {
+	handler := NewToolHandlerFromDeps(deps)
 	return func(ctx context.Context, request mcp.CallToolRequest) (*mcp.CallToolResult, error) {
 		handler.TrackToolCall(ctx, "get_ltp")
 		p := NewArgParser(request.GetArguments())
@@ -369,8 +409,18 @@ func (*OHLCTool) Tool() mcp.Tool {
 	)
 }
 
-func (*OHLCTool) Handler(manager *kc.Manager) server.ToolHandlerFunc {
-	handler := NewToolHandler(manager)
+func (t *OHLCTool) Handler(manager *kc.Manager) server.ToolHandlerFunc {
+	// Sprint 5 Tool2 bridge: delegate to HandlerDeps. The legacy
+	// Handler entry point is retained for common.Tool interface
+	// satisfaction during the transition window. Once every Tool
+	// also implements Tool2 the bridge is dropped (coordinator PR).
+	h := NewToolHandler(manager)
+	return t.HandlerDeps(&h.Deps)
+}
+
+// HandlerDeps implements common.Tool2 for OHLCTool.
+func (*OHLCTool) HandlerDeps(deps *ToolHandlerDeps) server.ToolHandlerFunc {
+	handler := NewToolHandlerFromDeps(deps)
 	return func(ctx context.Context, request mcp.CallToolRequest) (*mcp.CallToolResult, error) {
 		handler.TrackToolCall(ctx, "get_ohlc")
 		p := NewArgParser(request.GetArguments())

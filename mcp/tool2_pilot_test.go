@@ -116,3 +116,47 @@ func TestTool2TypeSwitch(t *testing.T) {
 		t.Errorf("tool2PilotBoth must implement Tool2 (HandlerDeps surface)")
 	}
 }
+
+// TestPilotFToolsSatisfyTool2 — empirical assertion that the 12
+// Pilot F root-mcp tools (commit 2 of Sprint 5 Pilot F-Y) implement
+// common.Tool2 via HandlerDeps. If any one of them loses HandlerDeps
+// (regression), the type-switch in RegisterToolsForRegistry silently
+// falls back to legacy Handler(*kc.Manager) for that tool — which is
+// still functionally correct but defeats the Tool2 migration. This
+// guard catches the regression immediately.
+//
+// Each entry is asserted twice: (a) implements common.Tool (the
+// pre-existing interface; ensures we did not accidentally remove
+// Handler during the migration), and (b) implements common.Tool2
+// (the new surface added by this commit).
+func TestPilotFToolsSatisfyTool2(t *testing.T) {
+	t.Parallel()
+	pilotF := []any{
+		// mcp/watchlist_tools.go (6)
+		&CreateWatchlistTool{},
+		&DeleteWatchlistTool{},
+		&AddToWatchlistTool{},
+		&RemoveFromWatchlistTool{},
+		&GetWatchlistTool{},
+		&ListWatchlistsTool{},
+		// mcp/market_tools.go (5)
+		&QuotesTool{},
+		&InstrumentsSearchTool{},
+		&HistoricalDataTool{},
+		&LTPTool{},
+		&OHLCTool{},
+		// mcp/tax_tools.go (1)
+		&TaxHarvestTool{},
+	}
+	if got := len(pilotF); got != 12 {
+		t.Fatalf("Pilot F roster expected 12 tools, got %d", got)
+	}
+	for _, tool := range pilotF {
+		if _, ok := tool.(common.Tool); !ok {
+			t.Errorf("%T must still implement common.Tool (legacy bridge retained during transition)", tool)
+		}
+		if _, ok := tool.(common.Tool2); !ok {
+			t.Errorf("%T must implement common.Tool2 (Pilot F Sprint 5 migration target)", tool)
+		}
+	}
+}

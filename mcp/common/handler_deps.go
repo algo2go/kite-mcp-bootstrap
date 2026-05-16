@@ -96,6 +96,32 @@ func (h *ToolHandler) Manager() *kc.Manager {
 	return h.manager
 }
 
+// NewToolHandlerFromDeps creates a ToolHandler bound to the given typed
+// Deps surface (Sprint 5 Tool2 entry path). The underlying *kc.Manager
+// field is left nil — Tool2-migrated handlers reach through Deps for
+// every dependency, and the Manager() accessor is reserved for the
+// legacy Tool.Handler(*kc.Manager) entry path only.
+//
+// Constructor invariant: ToolHandler instances created via this path
+// MUST NOT call h.Manager() or otherwise reach for h.manager — every
+// such site has a typed-Deps equivalent under h.Deps.*. The few
+// remaining manager.X() escape hatches (admin forensics-only stats
+// helpers, per Sprint 5 PREP) stay on the legacy Handler(*kc.Manager)
+// path and do not need this constructor.
+//
+// Sharing: tests should construct fresh ToolHandlers via this path or
+// via NewToolHandler — never share a single ToolHandler instance across
+// concurrent tool dispatches (the IsTokenExpiredFn injection seam can
+// race otherwise).
+func NewToolHandlerFromDeps(deps *ToolHandlerDeps) *ToolHandler {
+	if deps == nil {
+		return &ToolHandler{}
+	}
+	return &ToolHandler{
+		Deps: *deps,
+	}
+}
+
 // NewToolHandler creates a new tool handler, extracting focused interfaces
 // from the given manager. Individual tool files can still access h.manager
 // until they are migrated.

@@ -33,8 +33,18 @@ func (*CreateWatchlistTool) Tool() mcp.Tool {
 	)
 }
 
-func (*CreateWatchlistTool) Handler(manager *kc.Manager) server.ToolHandlerFunc {
-	handler := NewToolHandler(manager)
+func (t *CreateWatchlistTool) Handler(manager *kc.Manager) server.ToolHandlerFunc {
+	// Sprint 5 Tool2 bridge: delegate to HandlerDeps. The legacy
+	// Handler entry point is retained for common.Tool interface
+	// satisfaction during the transition window. Once every Tool
+	// also implements Tool2 the bridge is dropped (coordinator PR).
+	h := NewToolHandler(manager)
+	return t.HandlerDeps(&h.Deps)
+}
+
+// HandlerDeps implements common.Tool2 for CreateWatchlistTool.
+func (*CreateWatchlistTool) HandlerDeps(deps *ToolHandlerDeps) server.ToolHandlerFunc {
+	handler := NewToolHandlerFromDeps(deps)
 	return func(ctx context.Context, request mcp.CallToolRequest) (*mcp.CallToolResult, error) {
 		handler.TrackToolCall(ctx, "create_watchlist")
 
@@ -87,8 +97,18 @@ func (*DeleteWatchlistTool) Tool() mcp.Tool {
 	)
 }
 
-func (*DeleteWatchlistTool) Handler(manager *kc.Manager) server.ToolHandlerFunc {
-	handler := NewToolHandler(manager)
+func (t *DeleteWatchlistTool) Handler(manager *kc.Manager) server.ToolHandlerFunc {
+	// Sprint 5 Tool2 bridge: delegate to HandlerDeps. The legacy
+	// Handler entry point is retained for common.Tool interface
+	// satisfaction during the transition window. Once every Tool
+	// also implements Tool2 the bridge is dropped (coordinator PR).
+	h := NewToolHandler(manager)
+	return t.HandlerDeps(&h.Deps)
+}
+
+// HandlerDeps implements common.Tool2 for DeleteWatchlistTool.
+func (*DeleteWatchlistTool) HandlerDeps(deps *ToolHandlerDeps) server.ToolHandlerFunc {
+	handler := NewToolHandlerFromDeps(deps)
 	return func(ctx context.Context, request mcp.CallToolRequest) (*mcp.CallToolResult, error) {
 		handler.TrackToolCall(ctx, "delete_watchlist")
 
@@ -103,7 +123,7 @@ func (*DeleteWatchlistTool) Handler(manager *kc.Manager) server.ToolHandlerFunc 
 		}
 
 		watchlistRef := NewArgParser(args).String("watchlist", "")
-		wl := resolveWatchlist(manager, email, watchlistRef)
+		wl := resolveWatchlist(deps.Watchlist, email, watchlistRef)
 		if wl == nil {
 			return mcp.NewToolResultError(fmt.Sprintf("Watchlist %q not found", watchlistRef)), nil
 		}
@@ -153,8 +173,18 @@ func (*AddToWatchlistTool) Tool() mcp.Tool {
 	)
 }
 
-func (*AddToWatchlistTool) Handler(manager *kc.Manager) server.ToolHandlerFunc {
-	handler := NewToolHandler(manager)
+func (t *AddToWatchlistTool) Handler(manager *kc.Manager) server.ToolHandlerFunc {
+	// Sprint 5 Tool2 bridge: delegate to HandlerDeps. The legacy
+	// Handler entry point is retained for common.Tool interface
+	// satisfaction during the transition window. Once every Tool
+	// also implements Tool2 the bridge is dropped (coordinator PR).
+	h := NewToolHandler(manager)
+	return t.HandlerDeps(&h.Deps)
+}
+
+// HandlerDeps implements common.Tool2 for AddToWatchlistTool.
+func (*AddToWatchlistTool) HandlerDeps(deps *ToolHandlerDeps) server.ToolHandlerFunc {
+	handler := NewToolHandlerFromDeps(deps)
 	return func(ctx context.Context, request mcp.CallToolRequest) (*mcp.CallToolResult, error) {
 		handler.TrackToolCall(ctx, "add_to_watchlist")
 
@@ -175,7 +205,7 @@ func (*AddToWatchlistTool) Handler(manager *kc.Manager) server.ToolHandlerFunc {
 		targetEntry := p.Float("target_entry", 0)
 		targetExit := p.Float("target_exit", 0)
 
-		wl := resolveWatchlist(manager, email, watchlistRef)
+		wl := resolveWatchlist(deps.Watchlist, email, watchlistRef)
 		if wl == nil {
 			return mcp.NewToolResultError(fmt.Sprintf("Watchlist %q not found. Use create_watchlist first.", watchlistRef)), nil
 		}
@@ -260,8 +290,18 @@ func (*RemoveFromWatchlistTool) Tool() mcp.Tool {
 	)
 }
 
-func (*RemoveFromWatchlistTool) Handler(manager *kc.Manager) server.ToolHandlerFunc {
-	handler := NewToolHandler(manager)
+func (t *RemoveFromWatchlistTool) Handler(manager *kc.Manager) server.ToolHandlerFunc {
+	// Sprint 5 Tool2 bridge: delegate to HandlerDeps. The legacy
+	// Handler entry point is retained for common.Tool interface
+	// satisfaction during the transition window. Once every Tool
+	// also implements Tool2 the bridge is dropped (coordinator PR).
+	h := NewToolHandler(manager)
+	return t.HandlerDeps(&h.Deps)
+}
+
+// HandlerDeps implements common.Tool2 for RemoveFromWatchlistTool.
+func (*RemoveFromWatchlistTool) HandlerDeps(deps *ToolHandlerDeps) server.ToolHandlerFunc {
+	handler := NewToolHandlerFromDeps(deps)
 	return func(ctx context.Context, request mcp.CallToolRequest) (*mcp.CallToolResult, error) {
 		handler.TrackToolCall(ctx, "remove_from_watchlist")
 
@@ -279,7 +319,7 @@ func (*RemoveFromWatchlistTool) Handler(manager *kc.Manager) server.ToolHandlerF
 		watchlistRef := p.String("watchlist", "")
 		itemsStr := p.String("items", "")
 
-		wl := resolveWatchlist(manager, email, watchlistRef)
+		wl := resolveWatchlist(deps.Watchlist, email, watchlistRef)
 		if wl == nil {
 			return mcp.NewToolResultError(fmt.Sprintf("Watchlist %q not found", watchlistRef)), nil
 		}
@@ -355,8 +395,18 @@ func (*GetWatchlistTool) Tool() mcp.Tool {
 	)
 }
 
-func (*GetWatchlistTool) Handler(manager *kc.Manager) server.ToolHandlerFunc {
-	handler := NewToolHandler(manager)
+func (t *GetWatchlistTool) Handler(manager *kc.Manager) server.ToolHandlerFunc {
+	// Sprint 5 Tool2 bridge: delegate to HandlerDeps. The legacy
+	// Handler entry point is retained for common.Tool interface
+	// satisfaction during the transition window. Once every Tool
+	// also implements Tool2 the bridge is dropped (coordinator PR).
+	h := NewToolHandler(manager)
+	return t.HandlerDeps(&h.Deps)
+}
+
+// HandlerDeps implements common.Tool2 for GetWatchlistTool.
+func (*GetWatchlistTool) HandlerDeps(deps *ToolHandlerDeps) server.ToolHandlerFunc {
+	handler := NewToolHandlerFromDeps(deps)
 	return func(ctx context.Context, request mcp.CallToolRequest) (*mcp.CallToolResult, error) {
 		handler.TrackToolCall(ctx, "get_watchlist")
 
@@ -374,7 +424,7 @@ func (*GetWatchlistTool) Handler(manager *kc.Manager) server.ToolHandlerFunc {
 		watchlistRef := p.String("watchlist", "")
 		includeLTP := p.Bool("include_ltp", true)
 
-		wl := resolveWatchlist(manager, email, watchlistRef)
+		wl := resolveWatchlist(deps.Watchlist, email, watchlistRef)
 		if wl == nil {
 			return mcp.NewToolResultError(fmt.Sprintf("Watchlist %q not found", watchlistRef)), nil
 		}
@@ -505,8 +555,18 @@ func (*ListWatchlistsTool) Tool() mcp.Tool {
 	)
 }
 
-func (*ListWatchlistsTool) Handler(manager *kc.Manager) server.ToolHandlerFunc {
-	handler := NewToolHandler(manager)
+func (t *ListWatchlistsTool) Handler(manager *kc.Manager) server.ToolHandlerFunc {
+	// Sprint 5 Tool2 bridge: delegate to HandlerDeps. The legacy
+	// Handler entry point is retained for common.Tool interface
+	// satisfaction during the transition window. Once every Tool
+	// also implements Tool2 the bridge is dropped (coordinator PR).
+	h := NewToolHandler(manager)
+	return t.HandlerDeps(&h.Deps)
+}
+
+// HandlerDeps implements common.Tool2 for ListWatchlistsTool.
+func (*ListWatchlistsTool) HandlerDeps(deps *ToolHandlerDeps) server.ToolHandlerFunc {
+	handler := NewToolHandlerFromDeps(deps)
 	return func(ctx context.Context, request mcp.CallToolRequest) (*mcp.CallToolResult, error) {
 		handler.TrackToolCall(ctx, "list_watchlists")
 

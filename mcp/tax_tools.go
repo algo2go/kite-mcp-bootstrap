@@ -113,8 +113,18 @@ type taxHarvestResponse struct {
 	AllHoldings       []taxHoldingEntry  `json:"all_holdings"`
 }
 
-func (*TaxHarvestTool) Handler(manager *kc.Manager) server.ToolHandlerFunc {
-	handler := NewToolHandler(manager)
+func (t *TaxHarvestTool) Handler(manager *kc.Manager) server.ToolHandlerFunc {
+	// Sprint 5 Tool2 bridge: delegate to HandlerDeps. The legacy
+	// Handler entry point is retained for common.Tool interface
+	// satisfaction during the transition window. Once every Tool
+	// also implements Tool2 the bridge is dropped (coordinator PR).
+	h := NewToolHandler(manager)
+	return t.HandlerDeps(&h.Deps)
+}
+
+// HandlerDeps implements common.Tool2 for TaxHarvestTool.
+func (*TaxHarvestTool) HandlerDeps(deps *ToolHandlerDeps) server.ToolHandlerFunc {
+	handler := NewToolHandlerFromDeps(deps)
 	return func(ctx context.Context, request mcp.CallToolRequest) (*mcp.CallToolResult, error) {
 		handler.TrackToolCall(ctx, "tax_loss_analysis")
 
