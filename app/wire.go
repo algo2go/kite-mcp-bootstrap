@@ -9,7 +9,7 @@ import (
 	"time"
 
 	"github.com/mark3labs/mcp-go/server"
-	"github.com/algo2go/kite-mcp-bootstrap/app/metrics"
+	"github.com/algo2go/kite-mcp-metrics"
 	"github.com/algo2go/kite-mcp-bootstrap/kc"
 	"github.com/algo2go/kite-mcp-alerts"
 	"github.com/algo2go/kite-mcp-audit"

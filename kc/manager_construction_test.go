@@ -25,7 +25,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	"github.com/algo2go/kite-mcp-bootstrap/app/metrics"
+	"github.com/algo2go/kite-mcp-metrics"
 	"github.com/algo2go/kite-mcp-alerts"
 	"github.com/algo2go/kite-mcp-instruments"
 )

@@ -17,7 +17,7 @@ import (
 	"github.com/algo2go/kite-mcp-users"
 	"github.com/algo2go/kite-mcp-bootstrap/mcp/paper"
 	"github.com/algo2go/kite-mcp-oauth"
-	appmetrics "github.com/algo2go/kite-mcp-bootstrap/app/metrics"
+	appmetrics "github.com/algo2go/kite-mcp-metrics"
 	gomcp "github.com/mark3labs/mcp-go/mcp"
 )
 

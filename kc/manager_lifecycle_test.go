@@ -8,7 +8,7 @@ import (
 	"time"
 
 	"github.com/zerodha/gokiteconnect/v4/models"
-	"github.com/algo2go/kite-mcp-bootstrap/app/metrics"
+	"github.com/algo2go/kite-mcp-metrics"
 	"github.com/algo2go/kite-mcp-alerts"
 	"github.com/algo2go/kite-mcp-audit"
 )

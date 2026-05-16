@@ -4,7 +4,7 @@ import (
 	"context"
 	"log/slog"
 
-	"github.com/algo2go/kite-mcp-bootstrap/app/metrics"
+	"github.com/algo2go/kite-mcp-metrics"
 )
 
 // SchedulingService groups background scheduling and cleanup concerns:
