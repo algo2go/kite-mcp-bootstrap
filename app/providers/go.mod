@@ -51,7 +51,7 @@ require (
 	github.com/algo2go/kite-mcp-scheduler v0.1.0
 	github.com/algo2go/kite-mcp-users v0.2.0
 	github.com/mark3labs/mcp-go v0.46.0
-	github.com/algo2go/kite-mcp-bootstrap v0.0.0-00010101000000-000000000000
+	github.com/algo2go/kite-mcp-bootstrap v0.1.1
 	go.uber.org/fx v1.24.0
 )
 

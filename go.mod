@@ -23,9 +23,9 @@ require (
 	github.com/algo2go/kite-mcp-alerts v0.6.0
 	github.com/algo2go/kite-mcp-audit v0.2.0
 	github.com/algo2go/kite-mcp-billing v0.3.0
-	github.com/algo2go/kite-mcp-bootstrap/app/providers v0.0.0-00010101000000-000000000000
-	github.com/algo2go/kite-mcp-bootstrap/plugins v0.0.0-00010101000000-000000000000
-	github.com/algo2go/kite-mcp-bootstrap/testutil v0.0.0-00010101000000-000000000000
+	github.com/algo2go/kite-mcp-bootstrap/app/providers v0.1.1
+	github.com/algo2go/kite-mcp-bootstrap/plugins v0.1.1
+	github.com/algo2go/kite-mcp-bootstrap/testutil v0.1.1
 	github.com/algo2go/kite-mcp-broker v0.1.0
 	github.com/algo2go/kite-mcp-clockport v0.1.0
 	github.com/algo2go/kite-mcp-cqrs v0.1.0
