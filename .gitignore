@@ -1,0 +1,55 @@
+# Go build artifacts
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.bin
+
+# Go test files
+*.test
+*.prof
+coverage.out
+coverage.html
+*.cov
+
+# Go module cache
+go.sum.backup
+
+# Temporary files
+*.tmp
+*.temp
+*.log
+*.pid
+*.lock
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.project
+.settings/
+
+# Go vendor directory
+vendor/
+
+# Local env
+.env
+.env.local
+.env.*.local
+
+# Local data files (carry-over from kite-mcp-server)
+instruments.json
+*.csv
+*.xlsx

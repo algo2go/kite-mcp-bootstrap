@@ -1,0 +1,21 @@
+# Force LF line endings for all text files — prevents CRLF churn on Windows
+# (the kite-mcp-server arc hit repeated CRLF/LF flips during cross-platform
+# development; pin from the start to avoid the same issue here.)
+* text=auto eol=lf
+
+# Explicit binary types (no line-ending conversion)
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.pdf binary
+*.zip binary
+*.tar binary
+*.gz binary
+*.exe binary
+*.dll binary
+*.so binary
+*.dylib binary
+*.db binary
+*.sqlite binary
