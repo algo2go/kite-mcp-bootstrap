@@ -169,7 +169,7 @@ func TestSetupMux_AdminAuth_ValidJWT_AdminAccess(t *testing.T) {
 		Logger:      testLogger(),
 	}
 	_ = oauthCfg.Validate()
-	signer := &signerAdapter{signer: mgr.SessionSigner()}
+	signer := &signerAdapter{signer: mgr.SessionSigner}
 	exchanger := &kiteExchangerAdapter{
 		tokenStore:      kc.NewKiteTokenStore(),
 		credentialStore: kc.NewKiteCredentialStore(),
@@ -222,7 +222,7 @@ func TestSetupMux_GoogleSSO_NoCredentials(t *testing.T) {
 		Logger:      testLogger(),
 	}
 	_ = oauthCfg.Validate()
-	signer := &signerAdapter{signer: mgr.SessionSigner()}
+	signer := &signerAdapter{signer: mgr.SessionSigner}
 	exchanger := &kiteExchangerAdapter{
 		tokenStore:      kc.NewKiteTokenStore(),
 		credentialStore: kc.NewKiteCredentialStore(),
@@ -561,7 +561,7 @@ func TestSetupMux_WithOAuth_AllEndpointsWired(t *testing.T) {
 		Logger:      testLogger(),
 	}
 	_ = oauthCfg.Validate()
-	signer := &signerAdapter{signer: mgr.SessionSigner()}
+	signer := &signerAdapter{signer: mgr.SessionSigner}
 	exchanger := &kiteExchangerAdapter{
 		tokenStore:      kc.NewKiteTokenStore(),
 		credentialStore: kc.NewKiteCredentialStore(),
@@ -660,7 +660,7 @@ func TestSetupMux_PricingPage_WithPremiumTier(t *testing.T) {
 		Logger:      testLogger(),
 	}
 	_ = oauthCfg.Validate()
-	signer := &signerAdapter{signer: mgr.SessionSigner()}
+	signer := &signerAdapter{signer: mgr.SessionSigner}
 	exchanger := &kiteExchangerAdapter{
 		tokenStore:      kc.NewKiteTokenStore(),
 		credentialStore: kc.NewKiteCredentialStore(),
@@ -720,7 +720,7 @@ func TestSetupMux_AdminAuth_EmptyPath_DefaultRedirect(t *testing.T) {
 		Logger:      testLogger(),
 	}
 	_ = oauthCfg.Validate()
-	signer := &signerAdapter{signer: mgr.SessionSigner()}
+	signer := &signerAdapter{signer: mgr.SessionSigner}
 	exchanger := &kiteExchangerAdapter{
 		tokenStore:      kc.NewKiteTokenStore(),
 		credentialStore: kc.NewKiteCredentialStore(),
@@ -946,7 +946,7 @@ func TestSetupMux_BillingCheckout_RequiresAuth(t *testing.T) {
 		Logger:      testLogger(),
 	}
 	_ = oauthCfg.Validate()
-	signer := &signerAdapter{signer: mgr.SessionSigner()}
+	signer := &signerAdapter{signer: mgr.SessionSigner}
 	exchanger := &kiteExchangerAdapter{
 		tokenStore:      kc.NewKiteTokenStore(),
 		credentialStore: kc.NewKiteCredentialStore(),
@@ -1001,7 +1001,7 @@ func TestSetupMux_PricingPage_WithProTier_Cov(t *testing.T) {
 		Logger:      testLogger(),
 	}
 	_ = oauthCfg.Validate()
-	signer := &signerAdapter{signer: mgr.SessionSigner()}
+	signer := &signerAdapter{signer: mgr.SessionSigner}
 	exchanger := &kiteExchangerAdapter{
 		tokenStore:      kc.NewKiteTokenStore(),
 		credentialStore: kc.NewKiteCredentialStore(),
@@ -1045,7 +1045,7 @@ func TestSetupMux_AdminAuth_NonAdminUser_Forbidden(t *testing.T) {
 		Logger:      testLogger(),
 	}
 	_ = oauthCfg.Validate()
-	signer := &signerAdapter{signer: mgr.SessionSigner()}
+	signer := &signerAdapter{signer: mgr.SessionSigner}
 	exchanger := &kiteExchangerAdapter{
 		tokenStore:      kc.NewKiteTokenStore(),
 		credentialStore: kc.NewKiteCredentialStore(),
@@ -1085,7 +1085,7 @@ func TestSetupMux_GoogleSSO_WithCredentials(t *testing.T) {
 		Logger:      testLogger(),
 	}
 	_ = oauthCfg.Validate()
-	signer := &signerAdapter{signer: mgr.SessionSigner()}
+	signer := &signerAdapter{signer: mgr.SessionSigner}
 	exchanger := &kiteExchangerAdapter{
 		tokenStore:      kc.NewKiteTokenStore(),
 		credentialStore: kc.NewKiteCredentialStore(),

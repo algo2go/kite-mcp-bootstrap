@@ -173,7 +173,7 @@ func TestInitializeSessionSigner_CustomSigner(t *testing.T) {
 	if err != nil {
 		t.Errorf("initializeSessionSigner error: %v", err)
 	}
-	if m.sessionSigner != customSigner {
+	if m.SessionSigner != customSigner {
 		t.Error("Expected custom signer to be used")
 	}
 }
@@ -191,7 +191,7 @@ func TestInitializeSessionSigner_NilSigner(t *testing.T) {
 	if err != nil {
 		t.Errorf("initializeSessionSigner with nil should auto-create signer: %v", err)
 	}
-	if m.sessionSigner == nil {
+	if m.SessionSigner == nil {
 		t.Error("sessionSigner should not be nil after auto-creation")
 	}
 }

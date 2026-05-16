@@ -477,7 +477,7 @@ func (m *Manager) initFocusedServices(cfg Config, instrumentsManager *instrument
 	m.SessionSvc = NewSessionService(SessionServiceConfig{
 		CredentialSvc: m.CredentialSvc,
 		TokenStore:    m.tokenStore,
-		SessionSigner: m.sessionSigner,
+		SessionSigner: m.SessionSigner,
 		Logger:        cfg.Logger,
 		Metrics:       metricsImpl,
 		DevMode:       cfg.DevMode,

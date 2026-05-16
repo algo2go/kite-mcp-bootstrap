@@ -89,7 +89,7 @@ type Manager struct {
 
 	Instruments       *instruments.Manager
 	sessionManager    *SessionRegistry
-	sessionSigner     *SessionSigner
+	SessionSigner     *SessionSigner
 	tokenStore        *KiteTokenStore             // per-email Kite token cache
 	credentialStore   *KiteCredentialStore        // per-email Kite developer app credentials
 	tickerService     *ticker.Service             // per-user WebSocket ticker connections

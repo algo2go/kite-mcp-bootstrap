@@ -38,7 +38,7 @@ func TestNewManager(t *testing.T) {
 	}
 
 	// Verify session signer is initialized
-	if manager.sessionSigner == nil {
+	if manager.SessionSigner == nil {
 		t.Error("Expected session signer to be initialized")
 	}
 
@@ -379,12 +379,12 @@ func TestManager_MoreAccessors(t *testing.T) {
 	}
 
 	// SessionSigner
-	if m.SessionSigner() == nil {
+	if m.SessionSigner == nil {
 		t.Error("SessionSigner should not be nil")
 	}
 
 	// UpdateSessionSignerExpiry
-	m.UpdateSessionSignerExpiry(1 * time.Hour)
+	m.SessionSigner.SetSignatureExpiry(1 * time.Hour)
 
 	// GetInstrumentsStats
 	stats := m.GetInstrumentsStats()
@@ -645,7 +645,7 @@ func TestHandleKiteCallback_ValidSessionInvalidToken(t *testing.T) {
 
 	// Create a valid session and sign it
 	sessionID := m.GenerateSession()
-	signed := m.sessionSigner.SignSessionID(sessionID)
+	signed := m.SessionSigner.SignSessionID(sessionID)
 
 	req := httptest.NewRequest(http.MethodGet, "/callback?request_token=invalid_token&session_id="+signed, nil)
 	rr := httptest.NewRecorder()
@@ -877,7 +877,7 @@ func TestNew_WithCustomSessionSigner(t *testing.T) {
 	}
 	defer m.Shutdown()
 
-	if m.SessionSigner() != signer {
+	if m.SessionSigner != signer {
 		t.Error("Expected custom session signer")
 	}
 }
@@ -994,7 +994,7 @@ func TestHandleKiteCallback_SessionNotFound(t *testing.T) {
 	handler := m.HandleKiteCallback()
 
 	// Sign a valid but nonexistent session ID
-	signedID := m.sessionSigner.SignSessionID("nonexistent-session")
+	signedID := m.SessionSigner.SignSessionID("nonexistent-session")
 
 	req := httptest.NewRequest(http.MethodGet, "/callback?request_token=tok&session_id="+signedID, nil)
 	rr := httptest.NewRecorder()

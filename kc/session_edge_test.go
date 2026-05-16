@@ -384,7 +384,7 @@ func TestHandleKiteCallback_FullSuccess(t *testing.T) {
 	kd.Kite.SetBaseURI(ts.URL)
 
 	// Sign the session ID for the callback
-	signedID := m.sessionSigner.SignSessionID(sessionID)
+	signedID := m.SessionSigner.SignSessionID(sessionID)
 
 	// Build callback URL
 	callbackURL := fmt.Sprintf("/callback?request_token=mock-request-token&session_id=%s", signedID)
@@ -414,7 +414,7 @@ func TestHandleKiteCallback_CompleteSessionFails(t *testing.T) {
 	kd, _ := m.GetSession(sessionID)
 	kd.Kite.SetBaseURI(ts.URL)
 
-	signedID := m.sessionSigner.SignSessionID(sessionID)
+	signedID := m.SessionSigner.SignSessionID(sessionID)
 	callbackURL := fmt.Sprintf("/callback?request_token=bad-token&session_id=%s", signedID)
 	req := httptest.NewRequest(http.MethodGet, callbackURL, nil)
 	rr := httptest.NewRecorder()
@@ -1273,7 +1273,7 @@ func TestHandleKiteCallback_TemplateRenderFailure(t *testing.T) {
 	kd, _ := m.GetSession(sessionID)
 	kd.Kite.SetBaseURI(ts.URL)
 
-	signedID := m.sessionSigner.SignSessionID(sessionID)
+	signedID := m.SessionSigner.SignSessionID(sessionID)
 	callbackURL := fmt.Sprintf("/callback?request_token=mock-token&session_id=%s", signedID)
 	req := httptest.NewRequest(http.MethodGet, callbackURL, nil)
 	rr := httptest.NewRecorder()

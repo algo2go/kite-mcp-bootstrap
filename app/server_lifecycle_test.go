@@ -1419,7 +1419,7 @@ func TestRunServer_OAuthWiring_TokenChecker(t *testing.T) {
 	}
 	require.NoError(t, oauthCfg.Validate())
 
-	signer := &signerAdapter{signer: kcManager.SessionSigner()}
+	signer := &signerAdapter{signer: kcManager.SessionSigner}
 	exchanger := &kiteExchangerAdapter{
 		apiKey:          app.Config.KiteAPIKey,
 		apiSecret:       app.Config.KiteAPISecret,

@@ -1342,7 +1342,7 @@ func TestClientPersisterAdapter_SaveAndDelete(t *testing.T) {
 func TestSignerAdapter_SignAndVerify(t *testing.T) {
 	// We need a real session signer — create one from the kc package
 	mgr := newTestManager(t)
-	signer := mgr.SessionSigner()
+	signer := mgr.SessionSigner
 	adapter := &signerAdapter{signer: signer}
 
 	signed := adapter.Sign("test-data")
@@ -1679,7 +1679,7 @@ func TestSetupMux_AdminAuth_DoubleSlashPrefix_Push100Extra(t *testing.T) {
 		Logger:      testLogger(),
 	}
 	_ = oauthCfg.Validate()
-	signer := &signerAdapter{signer: mgr.SessionSigner()}
+	signer := &signerAdapter{signer: mgr.SessionSigner}
 	exchanger := &kiteExchangerAdapter{
 		tokenStore:      kc.NewKiteTokenStore(),
 		credentialStore: kc.NewKiteCredentialStore(),

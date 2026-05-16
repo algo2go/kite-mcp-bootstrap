@@ -149,7 +149,7 @@ func TestSetupGracefulShutdown_ComponentsWired_Push100(t *testing.T) {
 		Logger:      testLogger(),
 	}
 	require.NoError(t, oauthCfg.Validate())
-	signer := &signerAdapter{signer: mgr.SessionSigner()}
+	signer := &signerAdapter{signer: mgr.SessionSigner}
 	exchanger := &kiteExchangerAdapter{
 		apiKey: "tk", apiSecret: "ts",
 		tokenStore:      mgr.TokenStoreConcrete(),
@@ -461,7 +461,7 @@ func TestSetupMux_AdminPasswordBcrypt_Push100(t *testing.T) {
 		Logger:      testLogger(),
 	}
 	require.NoError(t, oauthCfg.Validate())
-	signer := &signerAdapter{signer: mgr.SessionSigner()}
+	signer := &signerAdapter{signer: mgr.SessionSigner}
 	exchanger := &kiteExchangerAdapter{
 		apiKey: "tk", apiSecret: "ts",
 		tokenStore:      mgr.TokenStoreConcrete(),
@@ -911,7 +911,7 @@ func TestSetupMux_GoogleSSO_Push100(t *testing.T) {
 		Logger:      testLogger(),
 	}
 	require.NoError(t, oauthCfg.Validate())
-	signer := &signerAdapter{signer: mgr.SessionSigner()}
+	signer := &signerAdapter{signer: mgr.SessionSigner}
 	exchanger := &kiteExchangerAdapter{
 		apiKey: "tk", apiSecret: "ts",
 		tokenStore:      mgr.TokenStoreConcrete(),

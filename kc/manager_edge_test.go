@@ -32,7 +32,7 @@ func TestManager_UpdateSessionSignerExpiry(t *testing.T) {
 	}
 	defer m.Shutdown()
 
-	m.UpdateSessionSignerExpiry(1 * time.Hour)
+	m.SessionSigner.SetSignatureExpiry(1 * time.Hour)
 	// Should not panic
 }
 
@@ -1713,7 +1713,7 @@ func TestManagerAccessors(t *testing.T) {
 	if m.SessionManager() == nil {
 		t.Error("SessionManager should not be nil")
 	}
-	if m.SessionSigner() == nil {
+	if m.SessionSigner == nil {
 		t.Error("SessionSigner should not be nil")
 	}
 }

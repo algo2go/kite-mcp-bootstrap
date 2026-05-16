@@ -67,7 +67,7 @@ func TestSetupGracefulShutdown_WithAllComponents(t *testing.T) {
 		Logger:      testLogger(),
 	}
 	_ = oauthCfg.Validate()
-	signer := &signerAdapter{signer: mgr.SessionSigner()}
+	signer := &signerAdapter{signer: mgr.SessionSigner}
 	exchanger := &kiteExchangerAdapter{
 		tokenStore:      kc.NewKiteTokenStore(),
 		credentialStore: kc.NewKiteCredentialStore(),

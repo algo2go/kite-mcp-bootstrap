@@ -1,8 +1,6 @@
 package kc
 
 import (
-	"time"
-
 	"github.com/algo2go/kite-mcp-broker"
 	"github.com/algo2go/kite-mcp-cqrs"
 )
@@ -81,16 +79,6 @@ func (m *Manager) QueryBus() *cqrs.InMemoryBus {
 // SessionManager returns the MCP session manager instance.
 func (m *Manager) SessionManager() *SessionRegistry {
 	return m.sessionManager
-}
-
-// SessionSigner returns the session signer instance.
-func (m *Manager) SessionSigner() *SessionSigner {
-	return m.sessionSigner
-}
-
-// UpdateSessionSignerExpiry updates the signature expiry duration.
-func (m *Manager) UpdateSessionSignerExpiry(duration time.Duration) {
-	m.sessionSigner.SetSignatureExpiry(duration)
 }
 
 // ---------------------------------------------------------------------------

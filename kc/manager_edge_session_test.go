@@ -28,7 +28,7 @@ func TestHandleKiteCallback_SessionNotFound_WithValidSig(t *testing.T) {
 	defer m.Shutdown()
 
 	// Sign a session ID that doesn't exist
-	signed := m.sessionSigner.SignSessionID("nonexistent-session-id")
+	signed := m.SessionSigner.SignSessionID("nonexistent-session-id")
 
 	handler := m.HandleKiteCallback()
 	req := httptest.NewRequest(http.MethodGet, "/callback?request_token=tok&session_id="+signed, nil)
@@ -58,7 +58,7 @@ func TestInitializeSessionSigner_Custom(t *testing.T) {
 	if err != nil {
 		t.Fatalf("initializeSessionSigner error: %v", err)
 	}
-	if m.sessionSigner != customSigner {
+	if m.SessionSigner != customSigner {
 		t.Error("Expected custom signer to be set")
 	}
 }
@@ -76,7 +76,7 @@ func TestInitializeSessionSigner_AutoGenerate_Boost(t *testing.T) {
 	if err != nil {
 		t.Fatalf("initializeSessionSigner (auto) error: %v", err)
 	}
-	if m.sessionSigner == nil {
+	if m.SessionSigner == nil {
 		t.Error("Session signer should be auto-generated")
 	}
 }
@@ -516,7 +516,7 @@ func TestInitializeSessionSigner_CustomSigner_C98(t *testing.T) {
 	if err != nil {
 		t.Fatalf("initializeSessionSigner with custom: %v", err)
 	}
-	if m.sessionSigner != custom {
+	if m.SessionSigner != custom {
 		t.Error("Expected custom signer to be used")
 	}
 }
@@ -534,7 +534,7 @@ func TestInitializeSessionSigner_AutoGenerate_C98(t *testing.T) {
 	if err != nil {
 		t.Fatalf("initializeSessionSigner auto: %v", err)
 	}
-	if m.sessionSigner == nil {
+	if m.SessionSigner == nil {
 		t.Error("Session signer should be auto-generated")
 	}
 }

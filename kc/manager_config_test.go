@@ -49,7 +49,7 @@ func TestNewConfigConstructor(t *testing.T) {
 		if manager.Instruments == nil {
 			t.Error("Expected instruments manager to be set")
 		}
-		if manager.sessionSigner == nil {
+		if manager.SessionSigner == nil {
 			t.Error("Expected session signer to be initialized")
 		}
 	})
@@ -95,7 +95,7 @@ func TestNewConfigConstructor(t *testing.T) {
 			t.Fatalf("Expected no error with custom session signer, got: %v", err)
 		}
 
-		if manager.sessionSigner != customSigner {
+		if manager.SessionSigner != customSigner {
 			t.Error("Expected custom session signer to be used")
 		}
 	})

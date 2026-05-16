@@ -642,7 +642,7 @@ func (app *App) RunServer() error {
 		if err := oauthCfg.Validate(); err != nil {
 			return fmt.Errorf("invalid OAuth config: %w", err)
 		}
-		signer := &signerAdapter{signer: kcManager.SessionSigner()}
+		signer := &signerAdapter{signer: kcManager.SessionSigner}
 		// Phase 3a kc/-side close-out: pass through interface accessors
 		// (TokenStore / CredentialStore / RegistryStore / UserStore)
 		// instead of the *Concrete() siblings. The kiteExchangerAdapter
