@@ -83,11 +83,6 @@ func (m *Manager) SessionManager() *SessionRegistry {
 	return m.sessionManager
 }
 
-// ManagedSessionSvc returns the thin session facade for active-count and terminate-by-email.
-func (m *Manager) ManagedSessionSvc() *ManagedSessionService {
-	return m.managedSessionSvc
-}
-
 // SessionSigner returns the session signer instance.
 func (m *Manager) SessionSigner() *SessionSigner {
 	return m.sessionSigner

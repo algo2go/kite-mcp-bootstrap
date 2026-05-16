@@ -232,7 +232,7 @@ func TestManager_Getters(t *testing.T) {
 	if m.InvitationStore() != nil {
 		t.Error("InvitationStore should be nil")
 	}
-	if m.ManagedSessionSvc() == nil {
+	if m.ManagedSessionSvc == nil {
 		t.Error("ManagedSessionSvc should not be nil")
 	}
 }

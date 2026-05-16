@@ -374,7 +374,7 @@ func TestManager_MoreAccessors(t *testing.T) {
 	m.IncrementDailyMetric("daily_test")
 
 	// ManagedSessionSvc
-	if m.ManagedSessionSvc() == nil {
+	if m.ManagedSessionSvc == nil {
 		t.Error("ManagedSessionSvc should not be nil")
 	}
 

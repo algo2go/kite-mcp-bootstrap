@@ -74,7 +74,7 @@ type Manager struct {
 	// Focused service objects (Clean Architecture)
 	CredentialSvc     *CredentialService     // credential resolution (per-user + global)
 	SessionSvc        *SessionService        // MCP session lifecycle
-	managedSessionSvc *ManagedSessionService // thin session facade (active count, terminate-by-email)
+	ManagedSessionSvc *ManagedSessionService // thin session facade (active count, terminate-by-email)
 	PortfolioSvc      *PortfolioService      // portfolio queries (holdings, positions, margins, profile)
 	OrderSvc          *OrderService          // order placement, modification, cancellation
 	AlertSvc          *AlertService          // alert lifecycle (CRUD, evaluation, trailing stops, Telegram, P&L)

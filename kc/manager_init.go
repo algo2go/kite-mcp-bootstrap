@@ -483,7 +483,7 @@ func (m *Manager) initFocusedServices(cfg Config, instrumentsManager *instrument
 		DevMode:       cfg.DevMode,
 	})
 	m.SessionSvc.SetSessionManager(m.sessionManager)
-	m.managedSessionSvc = NewManagedSessionService(m.sessionManager)
+	m.ManagedSessionSvc = NewManagedSessionService(m.sessionManager)
 
 	// Initialize portfolio and order services
 	m.PortfolioSvc = NewPortfolioService(m.SessionSvc, cfg.Logger)
